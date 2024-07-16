@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/07/16 18:54:06 by keishii          ###   ########.fr       */
+/*   Updated: 2024/07/16 19:11:34 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define SO_LONG_H
 
 # include "minilibx/mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
