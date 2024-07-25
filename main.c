@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/07/25 15:02:29 by keishii          ###   ########.fr       */
+/*   Created: 2024/07/25 13:50:31 by keishii           #+#    #+#             */
+/*   Updated: 2024/07/25 15:03:50 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-# include "minilibx/mlx.h"
-# include <X11/X.h>
-# include <X11/keysym.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <math.h>
-
-# include <stdio.h>
-
-typedef struct  s_data
+int	main(int argc, char **argv)
 {
-    void    *mlx_ptr;
-    void    *win_ptr;
-    void    *textures[5];
-    // t_map   *map;
-}               t_data;
-
-int     check_map_name(char *s);
-void    map_error(char *message);
-
-#endif
+	if (argc != 2)
+		map_error("\nWrong inputs.\nCheck usage: ./so_long <map name>.ber\n\n");
+	else if (argc == 2 && check_map_name(argv[1]))
+		map_error("\nWrong map name.\n\n");
+	printf("\nMap name is valid.\n\n");
+	return (0);
+}

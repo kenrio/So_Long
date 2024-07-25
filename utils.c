@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/07/25 15:02:29 by keishii          ###   ########.fr       */
+/*   Created: 2024/07/25 13:59:59 by keishii           #+#    #+#             */
+/*   Updated: 2024/07/25 15:03:56 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-# include "minilibx/mlx.h"
-# include <X11/X.h>
-# include <X11/keysym.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <math.h>
-
-# include <stdio.h>
-
-typedef struct  s_data
+size_t	ft_strlen(char *s)
 {
-    void    *mlx_ptr;
-    void    *win_ptr;
-    void    *textures[5];
-    // t_map   *map;
-}               t_data;
+	size_t	len;
 
-int     check_map_name(char *s);
-void    map_error(char *message);
+	len = 0;
+	while (*(s++))
+		len++;
+	return (len);
+}
 
-#endif
+int	check_map_name(char *s)
+{
+	size_t	i;
+
+	i = ft_strlen(s) - 1;
+	if (s[i] == 'r' && s[i - 1] == 'e' && s[i - 2] == 'b' && s[i - 3] == '.')
+		return (0);
+	return (1);
+}
+
+void	map_error(char *message)
+{
+	printf("\nError\n");
+	printf("%s", message);
+	exit(1);
+}
