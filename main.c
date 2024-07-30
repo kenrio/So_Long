@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/so_long.h"
 
 int	main(int argc, char **argv)
 {
@@ -18,6 +18,6 @@ int	main(int argc, char **argv)
 		map_error("\nWrong inputs.\nCheck usage: ./so_long <map name>.ber\n\n");
 	else if (argc == 2 && check_map_name(argv[1]))
 		map_error("\nWrong map name.\n\n");
-	printf("\nMap name is valid.\n\n");
+	ft_printf("\nMap name is valid.\n\n");
 	return (0);
 }

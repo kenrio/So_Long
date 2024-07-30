@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/so_long.h"
 
 size_t	ft_strlen(char *s)
 {
@@ -34,7 +34,7 @@ int	check_map_name(char *s)
 
 void	map_error(char *message)
 {
-	printf("\nError\n");
-	printf("%s", message);
+	ft_printf("\nError\n");
+	ft_printf("%s", message);
 	exit(1);
 }

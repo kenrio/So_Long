@@ -2,7 +2,7 @@
 # VARIABLES
 
 
-NAME		= a.out
+NAME		= so_long
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
@@ -12,8 +12,18 @@ CFLAGS		= -Wall -Wextra -Werror
 # SOURCES
 
 
-SRC_FILES	= so_long
-OBJ_FILES	= ${addsuffix .o, ${SRC_FILES}}
+SRC_FILES			= main \
+					utils
+PRINTF_SRC_FILES	= ${addprefix ft_printf/, \
+					ft_printf \
+					ft_printf_putchar \
+					ft_printf_puthex \
+					ft_printf_putptr \
+					ft_printf_putstr \
+					ft_printf_putuint}
+
+OBJ_FILES			= ${addsuffix .o, ${SRC_FILES}}
+PRINTF_OBJ_FILES	= ${addsuffix .o, ${PRINTF_SRC_FILES}}
 
 
 # **************************************** #
@@ -29,17 +39,21 @@ LFLAGS		= -L./minilibx -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
 
 all: ${NAME}
 
-${NAME}: ${OBJ_FILES}
-	${CC} ${CFLAGS} ${OBJ_FILES} ${LFLAGS} -o ${NAME}
+${NAME}: ${OBJ_FILES} ${PRINTF_OBJ_FILES}
+	${CC} ${CFLAGS} ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${LFLAGS} -o ${NAME}
 
 %.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
+	${CC} ${CFLAGS} -Iincludes -c $< -o $@
 
 clean:
-	rm -f *.o
+	rm -f ${OBJ_FILES} ${PRINTF_OBJ_FILES}
 
 fclean: clean
+	make clean -C minilibx/
 	rm -f ${NAME}
+
+mlx:
+	@${MAKE} re -C minilibx/
 
 re: fclean all
 
