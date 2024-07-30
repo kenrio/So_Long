@@ -12,15 +12,17 @@ CFLAGS		= -Wall -Wextra -Werror
 # SOURCES
 
 
-SRC_FILES			= main \
-					utils
+SRC_FILES			= ${addprefix src/, \
+					main \
+					utils }
+
 PRINTF_SRC_FILES	= ${addprefix ft_printf/, \
 					ft_printf \
 					ft_printf_putchar \
 					ft_printf_puthex \
 					ft_printf_putptr \
 					ft_printf_putstr \
-					ft_printf_putuint}
+					ft_printf_putuint }
 
 OBJ_FILES			= ${addsuffix .o, ${SRC_FILES}}
 PRINTF_OBJ_FILES	= ${addsuffix .o, ${PRINTF_SRC_FILES}}

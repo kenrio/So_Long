@@ -52,4 +52,6 @@ void	parse_map(t_map *map)
 	if (fd < 0)
 		map_error("Map not found.");
 	ft_printf("Map found.\n");
+	map->height = 0;
+	map->width = 0;
 }
