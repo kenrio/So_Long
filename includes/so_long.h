@@ -29,6 +29,8 @@
 typedef struct s_map
 {
     char    *path;
+    size_t  width;
+    size_t  height;
 }               t_map ;
 
 typedef struct  s_data
