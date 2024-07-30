@@ -29,9 +29,9 @@ PRINTF_OBJ_FILES	= ${addsuffix .o, ${PRINTF_SRC_FILES}}
 # **************************************** #
 # LIBRARIES & FRAMEWORKS
 
-
-LFLAGS		= -L./minilibx -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
-
+# Error with -lmlx
+# LFLAGS		= -Lmlx -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
+LFLAGS		= -Lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
 
 # **************************************** #
 # RULES
@@ -40,10 +40,10 @@ LFLAGS		= -L./minilibx -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
 all: ${NAME}
 
 ${NAME}: ${OBJ_FILES} ${PRINTF_OBJ_FILES}
-	${CC} ${CFLAGS} ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${LFLAGS} -o ${NAME}
+	${CC} ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
 
 %.o: %.c
-	${CC} ${CFLAGS} -Iincludes -c $< -o $@
+	${CC} ${CFLAGS} -Iminilibx -Iincludes -c $< -o $@
 
 clean:
 	rm -f ${OBJ_FILES} ${PRINTF_OBJ_FILES}

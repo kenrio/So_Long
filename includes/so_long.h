@@ -22,7 +22,7 @@
 
 # include <stdio.h>
 
-# include "../minilibx/mlx.h"
+# include "mlx.h"
 # include "ft_printf.h"
 
 typedef struct  s_data
