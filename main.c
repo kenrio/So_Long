@@ -10,7 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "so_long.h"
+
+__attribute__((destructor))
+static void destructor() {
+    system("leaks -q so_long");
+}
 
 int	main(int argc, char **argv)
 {
