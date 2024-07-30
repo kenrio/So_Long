@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
+# include <fcntl.h>
 # include <math.h>
 
 # include <stdio.h>
@@ -25,16 +26,24 @@
 # include "mlx.h"
 # include "ft_printf.h"
 
+typedef struct s_map
+{
+    char    *path;
+}               t_map ;
+
 typedef struct  s_data
 {
-    void    *mlx_ptr;
-    void    *win_ptr;
+    void    *mlx;
+    void    *win;
+    void    *img;
     void    *textures[5];
-    // t_map   *map;
-}               t_data;
+    t_map   map;
+}               t_data ;
 
 size_t  ft_strlen(char *s);
 int     check_map_name(char *s);
 void    map_error(char *message);
+void	init_game(t_data *data, char *map_path);
+void	parse_map(t_map *map);
 
 #endif

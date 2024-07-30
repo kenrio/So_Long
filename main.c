@@ -14,10 +14,14 @@
 
 int	main(int argc, char **argv)
 {
+	t_data	data;
+
 	if (argc != 2)
-		map_error("\nWrong inputs.\nCheck usage: ./so_long <map name>.ber\n\n");
+		map_error("Wrong inputs.\nCheck usage: ./so_long <map name>.ber");
 	else if (argc == 2 && check_map_name(argv[1]))
-		map_error("\nWrong map name.\n\n");
+		map_error("Wrong map name.");
 	ft_printf("\nMap name is valid.\n\n");
+	init_game(&data, argv[1]);
+	parse_map(&data.map);
 	return (0);
 }

@@ -34,7 +34,22 @@ int	check_map_name(char *s)
 
 void	map_error(char *message)
 {
-	ft_printf("\nError\n");
-	ft_printf("%s", message);
+	ft_printf("\nError\n\n");
+	ft_printf("%s\n\n", message);
 	exit(1);
+}
+
+void	init_game(t_data *data, char *map_path)
+{
+	data->map.path = map_path;
+}
+
+void	parse_map(t_map *map)
+{
+	int	fd;
+
+	fd = open(map->path, O_RDONLY);
+	if (fd < 0)
+		map_error("Map not found.");
+	ft_printf("Map found.\n");
 }
