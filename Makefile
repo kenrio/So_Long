@@ -14,7 +14,9 @@ CFLAGS		= -Wall -Wextra -Werror
 
 SRC_FILES			= ${addprefix src/, \
 					main \
-					utils }
+					utils \
+					map_parser \
+					map_parser_utils }
 
 PRINTF_SRC_FILES	= ${addprefix ft_printf/, \
 					ft_printf \

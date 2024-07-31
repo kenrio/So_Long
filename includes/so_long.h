@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/07/25 15:02:29 by keishii          ###   ########.fr       */
+/*   Updated: 2024/07/31 18:28:18 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ int     check_map_name(char *s);
 void    map_error(char *message);
 void	init_game(t_data *data, char *map_path);
 void	parse_map(t_map *map);
+size_t  ft_linelen(char *s);
 void	fill_map(t_data *data);
+void	init_map(t_data *data, t_point *p);
+void	allocate_line(t_data *data, t_point grid_pos);
+void	fill_tiles(t_data *data, char *line, t_point grid_pos);
 
 #endif
