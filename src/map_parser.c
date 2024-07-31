@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:15:15 by keishii           #+#    #+#             */
-/*   Updated: 2024/07/31 18:28:27 by keishii          ###   ########.fr       */
+/*   Updated: 2024/07/31 18:54:33 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	fill_map(t_data *data)
 			grid_pos.x++;
 		}
 		grid_pos.x = 0;
+		ft_printf("%s\n", data->map.grid[grid_pos.y]);
 		grid_pos.y++;
 		line = get_next_line(data->map.fd);
 	}
