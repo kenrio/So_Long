@@ -27,12 +27,27 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 
+typedef struct  s_point
+{
+    size_t  x;
+    size_t  y;
+}               t_point;
+
+typedef struct  s_tile
+{
+    char    t;
+    int     v;
+}               t_tile;
+
 typedef struct s_map
 {
     char    *path;
+    int     fd;
     size_t  width;
     size_t  height;
-}               t_map ;
+    char    **grid;
+    t_tile  **tiles;
+}               t_map;
 
 typedef struct  s_data
 {
@@ -41,12 +56,13 @@ typedef struct  s_data
     void    *img;
     void    *textures[5];
     t_map   map;
-}               t_data ;
+}               t_data;
 
 size_t  ft_strlen(char *s);
 int     check_map_name(char *s);
 void    map_error(char *message);
 void	init_game(t_data *data, char *map_path);
 void	parse_map(t_map *map);
+void	fill_map(t_data *data);
 
 #endif

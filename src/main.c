@@ -28,5 +28,6 @@ int	main(int argc, char **argv)
 	ft_printf("Check inputs: valid\n");
 	init_game(&data, argv[1]);
 	parse_map(&data.map);
+	fill_map(&data);
 	return (0);
 }
