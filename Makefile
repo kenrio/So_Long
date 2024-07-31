@@ -24,8 +24,13 @@ PRINTF_SRC_FILES	= ${addprefix ft_printf/, \
 					ft_printf_putstr \
 					ft_printf_putuint }
 
+GNL_SRC_FILES		= ${addprefix gnl/, \
+					get_next_line \
+					get_next_line_utils }
+
 OBJ_FILES			= ${addsuffix .o, ${SRC_FILES}}
 PRINTF_OBJ_FILES	= ${addsuffix .o, ${PRINTF_SRC_FILES}}
+GNL_OBJ_FILES		= ${addsuffix .o, ${GNL_SRC_FILES}}
 
 
 # **************************************** #
@@ -41,14 +46,14 @@ LFLAGS		= -Lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
 
 all: ${NAME}
 
-${NAME}: ${OBJ_FILES} ${PRINTF_OBJ_FILES}
+${NAME}: ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
 	${CC} ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
 
 %.o: %.c
 	${CC} ${CFLAGS} -Iminilibx -Iincludes -c $< -o $@
 
 clean:
-	rm -f ${OBJ_FILES} ${PRINTF_OBJ_FILES}
+	rm -f ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
 
 fclean: clean
 	make clean -C minilibx/

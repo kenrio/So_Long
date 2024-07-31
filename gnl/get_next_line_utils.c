@@ -10,20 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (*s != '\0')
-	{
-		s++;
-		i++;
-	}
-	return (i);
-}
+#include "so_long.h"
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -46,7 +33,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	new_str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) \
+	new_str = (char *)malloc((ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1) \
 								* sizeof(char));
 	if (!new_str)
 	{
@@ -69,7 +56,7 @@ char	*ft_strdup(const char *s1)
 	int			i;
 	size_t		len;
 
-	len = ft_strlen(s1);
+	len = ft_strlen((char *)s1);
 	i = 0;
 	tmp = (char *)malloc((len + 1) * sizeof(char));
 	if (!tmp)

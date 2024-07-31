@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "so_long.h"
 
 static char	*fill_stash(int fd, char *stash);
 static char	*extract_line(char *stash);
