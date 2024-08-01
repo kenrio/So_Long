@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:15:15 by keishii           #+#    #+#             */
-/*   Updated: 2024/07/31 18:54:33 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/01 11:30:23 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	parse_map(t_map *map)
 	fd = open(map->path, O_RDONLY);
 	if (fd < 0)
 		map_error("Map file not found.");
-	ft_printf("Check file path: valid\n");
+	ft_printf("Check file path: OK!\n");
 	map->height = 0;
 	map->width = 0;
 	line = get_next_line(fd);
@@ -37,7 +37,7 @@ void	parse_map(t_map *map)
 	close(fd);
 	if (map->height == 0)
 		map_error("Map file is empty.");
-	ft_printf("\nCheck map shape: valid\n");
+	ft_printf("\nCheck map shape: OK!\n");
 }
 
 void	fill_map(t_data *data)
@@ -61,5 +61,7 @@ void	fill_map(t_data *data)
 		line = get_next_line(data->map.fd);
 	}
 	close(data->map.fd);
-	ft_printf("Check map content: valid\n");
+	if (check_map_wall(data))
+		map_error("Map is not surronded by walls.");
+	ft_printf("Check map content: OK!\n");
 }
