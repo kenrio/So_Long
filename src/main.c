@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:50:31 by keishii           #+#    #+#             */
-/*   Updated: 2024/07/31 18:28:26 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/01 10:56:54 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 		map_error("Wrong inputs.\nCheck usage: ./so_long <map name>.ber");
 	else if (argc == 2 && check_map_name(argv[1]))
 		map_error("Wrong map name.");
-	ft_printf("Check inputs: valid\n");
+	ft_printf("Check inputs: OK!\n");
 	init_game(&data, argv[1]);
 	parse_map(&data.map);
 	fill_map(&data);
