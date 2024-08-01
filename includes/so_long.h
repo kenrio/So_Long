@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/01 11:25:07 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/01 15:40:43 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ typedef struct s_map
 
 typedef struct  s_data
 {
+    t_map   map;
     void    *mlx;
     void    *win;
     void    *img;
     void    *textures[5];
-    t_map   map;
 }               t_data;
 
 size_t  ft_strlen(char *s);
