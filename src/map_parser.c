@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:15:15 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/02 11:31:25 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/02 12:52:04 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ void	fill_map(t_data *data)
 		line = get_next_line(data->map.fd);
 	}
 	close(data->map.fd);
+	printf("%d start point found: (%zu, %zu)\n", data->start_found, data->player.start_pos.x, data->player.start_pos.y);
+	printf("%d exit found.\n", data->exit_found);
+	printf("%d collectibles found.\n", data->collectibles);
 	if (check_map_wall(data))
 		map_error("Map is not surronded by walls.");
 	ft_printf("Check map content: OK!\n");

@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/02 11:59:42 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/02 12:52:14 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ typedef struct s_point
 	size_t	y;
 }				t_point;
 
+typedef struct s_player
+{
+	t_point	start_pos;
+	t_point	pos;
+}				t_player;
+
 typedef struct s_tile
 {
 	char	t;
@@ -51,11 +57,15 @@ typedef struct s_map
 
 typedef struct s_data
 {
-	t_map	map;
-	void	*mlx;
-	void	*win;
-	void	*img;
-	void	*textures[5];
+	t_map		map;
+	t_player	player;
+	int			start_found;
+	int			exit_found;
+	int			collectibles;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	void		*textures[5];
 }				t_data;
 
 size_t	ft_strlen(char *s);
