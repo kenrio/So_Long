@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/01 15:40:43 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/02 11:59:42 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,47 +27,47 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 
-typedef struct  s_point
+typedef struct s_point
 {
-    size_t  x;
-    size_t  y;
-}               t_point;
+	size_t	x;
+	size_t	y;
+}				t_point;
 
-typedef struct  s_tile
+typedef struct s_tile
 {
-    char    t;
-    int     v;
-}               t_tile;
+	char	t;
+	int		v;
+}				t_tile;
 
 typedef struct s_map
 {
-    char    *path;
-    int     fd;
-    size_t  width;
-    size_t  height;
-    char    **grid;
-    t_tile  **tiles;
-}               t_map;
+	char	*path;
+	int		fd;
+	size_t	width;
+	size_t	height;
+	char	**grid;
+	t_tile	**tiles;
+}				t_map;
 
-typedef struct  s_data
+typedef struct s_data
 {
-    t_map   map;
-    void    *mlx;
-    void    *win;
-    void    *img;
-    void    *textures[5];
-}               t_data;
+	t_map	map;
+	void	*mlx;
+	void	*win;
+	void	*img;
+	void	*textures[5];
+}				t_data;
 
-size_t  ft_strlen(char *s);
-int     check_map_name(char *s);
-void    map_error(char *message);
+size_t	ft_strlen(char *s);
+int		check_map_name(char *s);
+void	map_error(char *message);
 void	init_game(t_data *data, char *map_path);
 void	parse_map(t_map *map);
-size_t  ft_linelen(char *s);
+size_t	ft_linelen(char *s);
 void	fill_map(t_data *data);
 void	init_map(t_data *data, t_point *p);
 void	allocate_line(t_data *data, t_point grid_pos);
 void	fill_tiles(t_data *data, char *line, t_point grid_pos);
-int     check_map_wall(t_data *data);
+int		check_map_wall(t_data *data);
 
 #endif
