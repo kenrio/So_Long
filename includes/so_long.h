@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/02 12:52:14 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/02 15:01:18 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_map
 	size_t	height;
 	char	**grid;
 	t_tile	**tiles;
+	int		exit_access;
+	int		collectible_access;
 }				t_map;
 
 typedef struct s_data
