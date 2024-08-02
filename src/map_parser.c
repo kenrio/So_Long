@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:15:15 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/02 16:13:03 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/02 19:09:40 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ void	check_map_path(t_data *data, t_point p_pos)
 
 	map_size.x = data->map.width;
 	map_size.y = data->map.height;
-	if (p_pos.x < 0 || p_pos.y < 0 || \
-		p_pos.x > map_size.x || p_pos.y > map_size.y || \
+	if (p_pos.x > map_size.x || p_pos.y > map_size.y || \
 		data->map.grid[p_pos.y][p_pos.x] == '1' || \
 		data->map.tiles[p_pos.y][p_pos.x].v == 1)
 		return ;
