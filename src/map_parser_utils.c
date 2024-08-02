@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:19:27 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/01 11:30:28 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/02 12:05:20 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	check_map_wall(t_data *data)
 {
 	t_point	p;
 
-	p.x	= 0;
-	p.y	= 0;
+	p.x = 0;
+	p.y = 0;
 	while (p.x < data->map.width)
 	{
 		if (data->map.grid[p.y][p.x] != '1')
