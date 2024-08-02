@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:15:15 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/01 11:30:23 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/02 11:31:25 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,12 @@ void	parse_map(t_map *map)
 			map->width = ft_linelen(line);
 		if (ft_linelen(line) != (size_t)map->width)
 			map_error("Map is not rectangular.");
-		ft_printf("%s", line);
 		line = get_next_line(fd);
 	}
 	close(fd);
 	if (map->height == 0)
 		map_error("Map file is empty.");
-	ft_printf("\nCheck map shape: OK!\n");
+	ft_printf("Check map shape: OK!\n");
 }
 
 void	fill_map(t_data *data)
