@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:15:15 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/02 15:11:29 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/02 16:13:03 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,24 @@ void	check_map_path(t_data *data, t_point p_pos)
 	check_map_path(data, (t_point){p_pos.x + 1, p_pos.y});
 	check_map_path(data, (t_point){p_pos.x, p_pos.y - 1});
 	check_map_path(data, (t_point){p_pos.x, p_pos.y + 1});
-	return ;
+}
+
+void	check_map_status(t_data *data)
+{
+	if (data->start_found <= 0)
+		map_error("Map has no start point.");
+	else if (data->start_found > 1)
+		map_error("Map has multiple start points.");
+	else if (data->collectibles <= 0)
+		map_error("Map has no collectibles.");
+	else if (data->collectibles != data->map.collectible_access)
+		map_error("Some collectibles are inaccessible.");
+	else if (data->exit_found <= 0)
+		map_error("Map has no exit.");
+	else if (data->exit_found > 1)
+		map_error("Map has multiple exits.");
+	else if (data->map.exit_access == 0)
+		map_error("The exit is inaccessible.");
 }
 
 void	fill_map(t_data *data)
@@ -83,13 +100,12 @@ void	fill_map(t_data *data)
 		line = get_next_line(data->map.fd);
 	}
 	close(data->map.fd);
-	printf("%d start point found: (%zu, %zu).\n", data->start_found, data->player.start_pos.x, data->player.start_pos.y);
-	printf("%d exit found.\n", data->exit_found);
-	printf("%d collectibles found.\n", data->collectibles);
+	printf("%d start point found.\n", data->start_found);
 	if (check_map_wall(data))
 		map_error("Map is not surronded by walls.");
 	check_map_path(data, data->player.pos);
-	printf("%d exit accessible.\n", data->map.exit_access);
-	printf("%d collectibles accessible.\n", data->map.collectible_access);
+	printf("%d/%d collectibles accessible.\n", data->map.collectible_access, data->collectibles);
+	printf("%d/%d exit accessible.\n", data->map.exit_access, data->exit_found);
+	check_map_status(data);
 	ft_printf("Check map content: OK!\n");
 }
