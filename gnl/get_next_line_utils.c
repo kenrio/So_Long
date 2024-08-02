@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:13:21 by keishii           #+#    #+#             */
-/*   Updated: 2024/06/08 13:30:11 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/02 11:47:41 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	new_str = (char *)malloc((ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1) \
-								* sizeof(char));
+	new_str = (char *)malloc((ft_strlen((char *)s1) + \
+							ft_strlen((char *)s2) + 1) \
+							* sizeof(char));
 	if (!new_str)
 	{
 		free((void *)s1);
