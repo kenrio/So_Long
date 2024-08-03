@@ -16,7 +16,8 @@ SRC_FILES			= ${addprefix src/, \
 					main \
 					utils \
 					map_parser \
-					map_parser_utils }
+					map_parser_utils \
+					free }
 
 PRINTF_SRC_FILES	= ${addprefix ft_printf/, \
 					ft_printf \
@@ -50,6 +51,9 @@ all: ${NAME}
 
 ${NAME}: ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
 	${CC} ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
+
+debug: ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
+	${CC} -g ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
 
 %.o: %.c
 	${CC} ${CFLAGS} -Iminilibx -Iincludes -c $< -o $@
