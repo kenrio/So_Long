@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:15:15 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/03 14:13:07 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/03 15:28:10 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,7 @@ void	fill_map(t_data *data)
 	printf("%d/%d collectibles accessible.\n", data->map.collectible_access, data->collectibles);
 	printf("%d/%d exit accessible.\n", data->map.exit_access, data->exit_found);
 	check_map_status(data);
+	// free_grid(data);
+	// free_tiles(data);
 	ft_printf("Check map content: OK!\n");
 }

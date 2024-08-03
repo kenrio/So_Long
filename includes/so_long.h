@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/03 14:13:07 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/03 15:02:01 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,7 @@ void	init_map(t_data *data, t_point *p);
 void	allocate_line(t_data *data, t_point grid_pos);
 void	fill_tiles(t_data *data, char *line, t_point grid_pos);
 int		check_map_wall(t_data *data);
+void	free_grid(t_data *data);
+void	free_tiles(t_data *data);
 
 #endif

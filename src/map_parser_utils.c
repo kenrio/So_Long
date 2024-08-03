@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:19:27 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/03 14:16:59 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/03 16:29:08 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,13 @@ void	fill_tiles(t_data *data, char *line, t_point grid_pos)
 	data->map.tiles[grid_pos.y][grid_pos.x].t = line[grid_pos.x];
 	data->map.tiles[grid_pos.y][grid_pos.x].v = 0;
 	if (check_map_character(data->map.grid[grid_pos.y][grid_pos.x]))
+	{
+		// close(data->map.fd);
+		// free_tiles(data);
+		// free_grid(data);
+		// free(line);
 		exit_error("Found unspecified character in map file.");
+	}
 	else if (data->map.grid[grid_pos.y][grid_pos.x] == 'P')
 	{
 		data->start_found++;
