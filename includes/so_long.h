@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/02 15:01:18 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/03 14:13:07 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_data
 
 size_t	ft_strlen(char *s);
 int		check_map_name(char *s);
-void	map_error(char *message);
+void	exit_error(char *message);
 void	init_game(t_data *data, char *map_path);
 void	parse_map(t_map *map);
 size_t	ft_linelen(char *s);

@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:15:15 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/02 19:09:40 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/03 14:13:07 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	parse_map(t_map *map)
 
 	fd = open(map->path, O_RDONLY);
 	if (fd < 0)
-		map_error("Map file not found.");
+		exit_error("Map file not found.");
 	ft_printf("Check file path: OK!\n");
 	map->height = 0;
 	map->width = 0;
@@ -30,12 +30,12 @@ void	parse_map(t_map *map)
 		if (map->height == 1)
 			map->width = ft_linelen(line);
 		if (ft_linelen(line) != (size_t)map->width)
-			map_error("Map is not rectangular.");
+			exit_error("Map is not rectangular.");
 		line = get_next_line(fd);
 	}
 	close(fd);
 	if (map->height == 0)
-		map_error("Map file is empty.");
+		exit_error("Map file is empty.");
 	ft_printf("Check map shape: OK!\n");
 }
 
@@ -63,19 +63,19 @@ void	check_map_path(t_data *data, t_point p_pos)
 void	check_map_status(t_data *data)
 {
 	if (data->start_found <= 0)
-		map_error("Map has no start point.");
+		exit_error("Map has no start point.");
 	else if (data->start_found > 1)
-		map_error("Map has multiple start points.");
+		exit_error("Map has multiple start points.");
 	else if (data->collectibles <= 0)
-		map_error("Map has no collectibles.");
+		exit_error("Map has no collectibles.");
 	else if (data->collectibles != data->map.collectible_access)
-		map_error("Some collectibles are inaccessible.");
+		exit_error("Some collectibles are inaccessible.");
 	else if (data->exit_found <= 0)
-		map_error("Map has no exit.");
+		exit_error("Map has no exit.");
 	else if (data->exit_found > 1)
-		map_error("Map has multiple exits.");
+		exit_error("Map has multiple exits.");
 	else if (data->map.exit_access == 0)
-		map_error("The exit is inaccessible.");
+		exit_error("The exit is inaccessible.");
 }
 
 void	fill_map(t_data *data)
@@ -101,7 +101,7 @@ void	fill_map(t_data *data)
 	close(data->map.fd);
 	printf("%d start point found.\n", data->start_found);
 	if (check_map_wall(data))
-		map_error("Map is not surronded by walls.");
+		exit_error("Map is not surronded by walls.");
 	check_map_path(data, data->player.pos);
 	printf("%d/%d collectibles accessible.\n", data->map.collectible_access, data->collectibles);
 	printf("%d/%d exit accessible.\n", data->map.exit_access, data->exit_found);

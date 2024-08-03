@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:59:59 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/02 15:09:24 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/03 14:13:07 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ int	check_map_name(char *s)
 	return (1);
 }
 
-void	map_error(char *message)
+void	exit_error(char *message)
 {
 	ft_printf("\nError: ");
 	ft_printf("%s\n\n", message);
 	exit(1);
 }
 
-void	init_game(t_data *data, char *map_path)
+void	init_game(t_data *data, char *file_path)
 {
-	data->map.path = map_path;
+	data->map.path = file_path;
 	data->start_found = 0;
 	data->exit_found = 0;
 	data->collectibles = 0;
