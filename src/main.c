@@ -6,16 +6,16 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:50:31 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/03 16:38:54 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/03 16:48:34 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// __attribute__((destructor))
-// static void destructor() {
-//     system("leaks -q so_long");
-// }
+__attribute__((destructor))
+static void destructor() {
+    system("leaks -q so_long");
+}
 
 int	main(int argc, char **argv)
 {
