@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:47:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/07 21:13:52 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/07 21:28:22 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	open_map(t_game *game_init, char *file_path)
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
 		exit_error("Could not open file.");
-	if (count_map_lines(game_init, file_path) < 3)
+	game_init->map_init.count_lines = count_map_lines(file_path);
+	if (game_init->map_init.count_lines < 3)
 	{
 		close(fd);
 		exit_error("Map has too few lines.");
@@ -31,9 +32,10 @@ void	open_map(t_game *game_init, char *file_path)
 	free_grid(game_init);
 }
 
-int	count_map_lines(t_game *game_init, char *file_path)
+int	count_map_lines(char *file_path)
 {
 	int		fd;
+	int		count;
 	char	buffer[BUFFER_SIZE];
 	ssize_t	n_read;
 	int		i;
@@ -41,6 +43,7 @@ int	count_map_lines(t_game *game_init, char *file_path)
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
 		return (0);
+	count = 0;
 	while (1)
 	{
 		n_read = read(fd, buffer, BUFFER_SIZE);
@@ -51,10 +54,10 @@ int	count_map_lines(t_game *game_init, char *file_path)
 		i = 0;
 		while (i < n_read)
 			if (buffer[i++] == '\n')
-				game_init->map_init.count_lines++;
+				count++;
 	}
 	close(fd);
-	return (game_init->map_init.count_lines + 1);
+	return (count + 1);
 }
 
 void	read_map(t_game *game_init, int fd)
@@ -63,15 +66,13 @@ void	read_map(t_game *game_init, int fd)
 	char	*line;
 
 	game_init->map_init.grid
-		= malloc((game_init->map_init.count_lines + 1) * sizeof(char *));
+		= malloc(game_init->map_init.count_lines * sizeof(char *));
+	printf("count_lines: %d\n", game_init->map_init.count_lines);
 	if (!game_init->map_init.grid)
 	{
 		close(fd);
 		exit_error("Failed to allocate memory.");
 	}
-	i = 0;
-	while (i <= game_init->map_init.count_lines)
-		game_init->map_init.grid[i++] = NULL;
 	i = 0;
 	line = get_next_line(fd);
 	while (line)

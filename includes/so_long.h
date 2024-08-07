@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/07 17:18:00 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/07 21:24:51 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct s_game
 
 void	game_struct_init(t_game *game_init);
 void	open_map(t_game *game_init, char *file_path);
-int		count_map_lines(t_game *game_init, char *file_path);
+int		count_map_lines(char *file_path);
 void	read_map(t_game *game_init, int fd);
 void	free_grid(t_game *game_init);
 size_t	ft_strlen(char *s);
