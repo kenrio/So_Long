@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/03 15:02:01 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/07 12:04:53 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,26 @@ typedef struct s_tile
 	int		v;
 }				t_tile;
 
-typedef struct s_map
+typedef struct s_game_objs
+{
+	void	*player;
+	void	*collectibles;
+	void	*exit;
+	void	*wall;
+	void	*floor;
+	int		img_width;
+	int		img_height;
+}				t_game_objs;
+
+typedef struct s_game_resolutions
+{
+	int		settings_map_width;
+	int		settings_map_height;
+	char	*settings_name_window;
+	char	*settings_name_map;
+}				t_game_resolutions;
+
+typedef struct s_map_data
 {
 	char	*path;
 	int		fd;
@@ -55,33 +74,34 @@ typedef struct s_map
 	t_tile	**tiles;
 	int		exit_access;
 	int		collectible_access;
-}				t_map;
+}				t_map_data;
 
-typedef struct s_data
+typedef struct s_game
 {
-	t_map		map;
+	void				*mlx_ptr;
+	void				*win_ptr;
+	t_game_objs			game_objs;
+	t_map_data			map_init;
+	t_game_resolutions	resolution_init;
 	t_player	player;
 	int			start_found;
 	int			exit_found;
 	int			collectibles;
-	void		*mlx;
-	void		*win;
 	void		*img;
-	void		*textures[5];
-}				t_data;
+}						t_game;
 
 size_t	ft_strlen(char *s);
 int		check_map_name(char *s);
 void	exit_error(char *message);
-void	init_game(t_data *data, char *map_path);
-void	parse_map(t_map *map);
+void	init_game(t_game *data, char *map_path);
+void	parse_map(t_map_data *map);
 size_t	ft_linelen(char *s);
-void	fill_map(t_data *data);
-void	init_map(t_data *data, t_point *p);
-void	allocate_line(t_data *data, t_point grid_pos);
-void	fill_tiles(t_data *data, char *line, t_point grid_pos);
-int		check_map_wall(t_data *data);
-void	free_grid(t_data *data);
-void	free_tiles(t_data *data);
+void	fill_map(t_game *data);
+void	init_map(t_game *data, t_point *p);
+void	allocate_line(t_game *data, t_point grid_pos);
+void	fill_tiles(t_game *data, char *line, t_point grid_pos);
+int		check_map_wall(t_game *data);
+void	free_grid(t_game *data);
+void	free_tiles(t_game *data);
 
 #endif
