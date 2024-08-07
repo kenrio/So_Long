@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:50:31 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/07 15:03:43 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/07 17:25:55 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 		exit_error("Wrong inputs.\nUsage: ./so_long <file_path/filename>.ber");
 	ft_printf("Check input count: OK!\n");
 	open_map(&game_init, argv[1]);
-	ft_printf("Program has successfully ended.\n");
+	ft_printf("\nProgram has successfully ended.\n");
 	return (0);
 }
 

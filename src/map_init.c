@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:47:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/07 14:09:07 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/07 17:23:11 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,25 @@ void	open_map(t_game *game_init, char *file_path)
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
 		exit_error("Could not open file.");
-	game_init->map_init.count_lines = count_map_line(fd);
-	if (!game_init->map_init.count_lines || game_init->map_init.count_lines < 3)
+	if (count_map_lines(game_init, file_path) < 3)
 	{
 		close(fd);
 		exit_error("Map has too few lines.");
 	}
+	read_map(game_init, fd);
+	free_grid(game_init);
 }
 
-int	count_map_line(int fd)
+int	count_map_lines(t_game *game_init, char *file_path)
 {
-	int		count;
+	int		fd;
 	char	buffer[BUFFER_SIZE];
 	ssize_t	n_read;
 	int		i;
 
-	count = 0;
+	fd = open(file_path, O_RDONLY);
+	if (fd == -1)
+		return (0);
 	while (1)
 	{
 		n_read = read(fd, buffer, BUFFER_SIZE);
@@ -47,11 +50,37 @@ int	count_map_line(int fd)
 		i = 0;
 		while (i < n_read)
 		{
-			if (buffer[i] == '\n')
-				count++;
-			i++;
+			if (buffer[i++] == '\n')
+				game_init->map_init.count_lines++;
 		}
 	}
-	count++;
-	return (count);
+	close(fd);
+	return (game_init->map_init.count_lines + 1);
+}
+
+void	read_map(t_game *game_init, int fd)
+{
+	int		i;
+	char	*line;
+
+	game_init->map_init.grid
+		= malloc(game_init->map_init.count_lines + 1 * sizeof(char *));
+	if (!game_init->map_init.grid)
+	{
+		close(fd);
+		exit_error("Failed to allocate memory.");
+	}
+	i = 0;
+	line = NULL;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		game_init->map_init.grid[i] = line;
+		ft_printf("%s", game_init->map_init.grid[i]);
+		i++;
+	}
+	game_init->map_init.grid[i] = NULL;
+	return ;
 }
