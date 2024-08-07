@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:47:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/07 17:23:11 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/07 21:13:52 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	open_map(t_game *game_init, char *file_path)
 		exit_error("Map has too few lines.");
 	}
 	read_map(game_init, fd);
+	close(fd);
 	free_grid(game_init);
 }
 
@@ -49,10 +50,8 @@ int	count_map_lines(t_game *game_init, char *file_path)
 			break ;
 		i = 0;
 		while (i < n_read)
-		{
 			if (buffer[i++] == '\n')
 				game_init->map_init.count_lines++;
-		}
 	}
 	close(fd);
 	return (game_init->map_init.count_lines + 1);
@@ -64,23 +63,21 @@ void	read_map(t_game *game_init, int fd)
 	char	*line;
 
 	game_init->map_init.grid
-		= malloc(game_init->map_init.count_lines + 1 * sizeof(char *));
+		= malloc((game_init->map_init.count_lines + 1) * sizeof(char *));
 	if (!game_init->map_init.grid)
 	{
 		close(fd);
 		exit_error("Failed to allocate memory.");
 	}
 	i = 0;
-	line = NULL;
-	while (1)
+	while (i <= game_init->map_init.count_lines)
+		game_init->map_init.grid[i++] = NULL;
+	i = 0;
+	line = get_next_line(fd);
+	while (line)
 	{
+		game_init->map_init.grid[i++] = line;
 		line = get_next_line(fd);
-		if (!line)
-			break ;
-		game_init->map_init.grid[i] = line;
-		ft_printf("%s", game_init->map_init.grid[i]);
-		i++;
 	}
-	game_init->map_init.grid[i] = NULL;
 	return ;
 }

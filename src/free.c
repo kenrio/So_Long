@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 14:51:24 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/07 17:09:18 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/07 21:11:13 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	free_grid(t_game *game_init)
 		return ;
 	i = 0;
 	while (game_init->map_init.grid[i])
-	{
-		free(game_init->map_init.grid[i]);
-		i++;
-	}
+		free(game_init->map_init.grid[i++]);
 	free(game_init->map_init.grid);
 	game_init->map_init.grid = NULL;
 	return ;
