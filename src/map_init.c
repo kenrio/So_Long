@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:47:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/07 21:28:22 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/08 01:06:57 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	read_map(t_game *game_init, int fd)
 
 	game_init->map_init.grid
 		= malloc(game_init->map_init.count_lines * sizeof(char *));
-	printf("count_lines: %d\n", game_init->map_init.count_lines);
 	if (!game_init->map_init.grid)
 	{
 		close(fd);
@@ -79,6 +78,12 @@ void	read_map(t_game *game_init, int fd)
 	{
 		game_init->map_init.grid[i++] = line;
 		line = get_next_line(fd);
+	}
+	if (check_map_width(game_init))
+	{
+		close(fd);
+		free_grid(game_init);
+		exit_error("Map is not rectangular.");
 	}
 	return ;
 }
