@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:59:59 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/07 12:26:27 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/07 12:30:15 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ size_t	ft_linelen(char *s)
 	return (len);
 }
 
-int	check_map_name(char *s)
+int	check_map_extension(char *s)
 {
 	size_t	i;
 
