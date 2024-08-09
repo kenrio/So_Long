@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 10:20:59 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/09 14:22:56 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/09 14:38:52 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_map_width(t_game *game_init)
 	{
 		if (width != ft_linelen(game_init->map_init.grid[i]))
 		{
-			printf("Incorrect line width.\n");
+			ft_printf("Incorrect line width.\n");
 			return (1);
 		}
 		i++;
@@ -47,7 +47,7 @@ int	check_map_wall(t_game *game_init)
 			{
 				if (game_init->map_init.grid[p.y][p.x] != '1')
 				{
-					printf("Unclosed wall.\n");
+					ft_printf("Unclosed wall.\n");
 					return (1);
 				}
 			}
@@ -87,7 +87,7 @@ int	check_map_character(int c)
 {
 	if (c != '0' && c != '1' && c != 'C' && c != 'E' && c != 'P')
 	{
-		printf("Found unspecified chararter.\n");
+		ft_printf("Found unspecified chararter.\n");
 		return (1);
 	}
 	return (0);
@@ -99,7 +99,7 @@ int	check_map_objects(t_game *game_init)
 			&& game_init->game_data.count_exit == 1
 			&& game_init->game_data.count_collectibles >= 1))
 	{
-		printf("Incorrect number of objects.\n");
+		ft_printf("Incorrect number of objects.\n");
 		return (1);
 	}
 	return (0);
