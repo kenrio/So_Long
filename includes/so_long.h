@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/09 11:01:49 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/09 13:16:58 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,14 @@ typedef struct s_game_resolutions
 	char	*settings_name_map;
 }				t_game_resolutions;
 
+typedef struct s_game_data
+{
+	int	count_player;
+	int	count_exit;
+	int	count_collectibles;
+	int	count_movements;
+}				t_game_data;
+
 typedef struct s_map_data
 {
 	char	**grid;
@@ -83,6 +91,7 @@ typedef struct s_game
 	void				*win_ptr;
 	t_game_objs			game_objs;
 	t_map_data			map_init;
+	t_game_data			game_data;
 	t_game_resolutions	resolution_init;
 	t_player	player;
 	int			start_found;
@@ -99,6 +108,8 @@ void	read_map(t_game *game_init, int fd);
 void	free_grid(t_game *game_init);
 int		check_map_width(t_game *game_init);
 int		check_map_wall(t_game *data);
+int		count_map_objects(t_game *game_init);
+int		check_map_objects(t_game *game_init);
 size_t	ft_strlen(char *s);
 size_t	ft_linelen(char *s);
 void	exit_error(char *message);
