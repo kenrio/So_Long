@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 10:20:59 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/09 13:17:27 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/09 14:22:56 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	count_map_objects(t_game *game_init)
 		p.y = 0;
 		while (p.y < game_init->map_init.height)
 		{
+			if (check_map_character(game_init->map_init.grid[p.y][p.x]))
+				return (1);
 			if (game_init->map_init.grid[p.y][p.x] == 'P')
 				game_init->game_data.count_player++;
 			else if (game_init->map_init.grid[p.y][p.x] == 'E')
@@ -79,6 +81,16 @@ int	count_map_objects(t_game *game_init)
 		p.x++;
 	}
 	return (check_map_objects(game_init));
+}
+
+int	check_map_character(int c)
+{
+	if (c != '0' && c != '1' && c != 'C' && c != 'E' && c != 'P')
+	{
+		printf("Found unspecified chararter.\n");
+		return (1);
+	}
+	return (0);
 }
 
 int	check_map_objects(t_game *game_init)

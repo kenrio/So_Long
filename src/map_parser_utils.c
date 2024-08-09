@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:19:27 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/09 13:17:19 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/09 14:19:16 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ void	allocate_line(t_data *data, t_point grid_pos)
 int	check_map_character(int c)
 {
 	if (c != '0' && c != '1' && c != 'C' && c != 'E' && c != 'P')
+	{
+		printf("Found incorrect chararter.\n");
 		return (1);
+	}
 	return (0);
 }
 

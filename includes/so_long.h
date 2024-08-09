@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/09 13:16:58 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/09 14:17:14 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int		check_map_width(t_game *game_init);
 int		check_map_wall(t_game *data);
 int		count_map_objects(t_game *game_init);
 int		check_map_objects(t_game *game_init);
+int		check_map_character(int c);
 size_t	ft_strlen(char *s);
 size_t	ft_linelen(char *s);
 void	exit_error(char *message);
