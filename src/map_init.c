@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:47:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/08 01:06:57 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/09 10:55:20 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	open_map(t_game *game_init, char *file_path)
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
 		exit_error("Could not open file.");
-	game_init->map_init.count_lines = count_map_lines(file_path);
-	if (game_init->map_init.count_lines < 3)
+	game_init->map_init.height = count_map_lines(file_path);
+	if (game_init->map_init.height < 3)
 	{
 		close(fd);
 		exit_error("Map has too few lines.");
@@ -66,7 +66,7 @@ void	read_map(t_game *game_init, int fd)
 	char	*line;
 
 	game_init->map_init.grid
-		= malloc(game_init->map_init.count_lines * sizeof(char *));
+		= malloc(game_init->map_init.height * sizeof(char *));
 	if (!game_init->map_init.grid)
 	{
 		close(fd);
@@ -79,11 +79,11 @@ void	read_map(t_game *game_init, int fd)
 		game_init->map_init.grid[i++] = line;
 		line = get_next_line(fd);
 	}
-	if (check_map_width(game_init))
+	if (check_map_width(game_init) || check_map_wall(game_init))
 	{
 		close(fd);
 		free_grid(game_init);
-		exit_error("Map is not rectangular.");
+		exit_error("Map has a problem.");
 	}
 	return ;
 }

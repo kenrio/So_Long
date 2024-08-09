@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/08 00:36:12 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/09 11:01:49 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 
 typedef struct s_point
 {
-	size_t	x;
-	size_t	y;
+	int	x;
+	int	y;
 }				t_point;
 
 typedef struct s_player
@@ -68,10 +68,10 @@ typedef struct s_map_data
 {
 	char	**grid;
 	int		count_lines;
+	int		width;
+	int		height;
 	char	*path;
 	int		fd;
-	size_t	width;
-	size_t	height;
 	t_tile	**tiles;
 	int		exit_access;
 	int		collectible_access;
@@ -98,16 +98,15 @@ int		count_map_lines(char *file_path);
 void	read_map(t_game *game_init, int fd);
 void	free_grid(t_game *game_init);
 int		check_map_width(t_game *game_init);
+int		check_map_wall(t_game *data);
 size_t	ft_strlen(char *s);
+size_t	ft_linelen(char *s);
 void	exit_error(char *message);
 void	init_game(t_game *data, char *map_path);
 void	parse_map(t_map_data *map);
-size_t	ft_linelen(char *s);
 void	fill_map(t_game *data);
 void	init_map(t_game *data, t_point *p);
 void	allocate_line(t_game *data, t_point grid_pos);
 void	fill_tiles(t_game *data, char *line, t_point grid_pos);
-int		check_map_wall(t_game *data);
-void	free_tiles(t_game *data);
 
 #endif

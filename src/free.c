@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 14:51:24 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/08 00:21:11 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/09 10:59:30 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,9 @@ void	free_grid(t_game *game_init)
 	if (!game_init->map_init.grid)
 		return ;
 	i = 0;
-	while (game_init->map_init.grid[i])
+	while (i < game_init->map_init.height)
 		free(game_init->map_init.grid[i++]);
 	free(game_init->map_init.grid);
 	game_init->map_init.grid = NULL;
 	return ;
-}
-
-void	free_tiles(t_game *data)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < data->map_init.height)
-	{
-		free(data->map_init.tiles[i]);
-		data->map_init.tiles[i] = NULL;
-		i++;
-	}
-	free(data->map_init.tiles);
-	data->map_init.tiles = NULL;
 }

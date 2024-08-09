@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:19:27 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/03 16:29:08 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/09 10:25:24 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,26 +69,26 @@ void	fill_tiles(t_data *data, char *line, t_point grid_pos)
 		data->collectibles++;
 }
 
-int	check_map_wall(t_data *data)
+int	check_map_wall(t_game *game_init)
 {
 	t_point	p;
 
 	p.x = 0;
 	p.y = 0;
-	while (p.x < data->map.width)
+	while (p.x < game_init->map_init.width)
 	{
-		if (data->map.grid[p.y][p.x] != '1')
+		if (game_init->map_init.grid[p.y][p.x] != '1')
 			return (1);
-		else if (data->map.grid[data->map.height - 1][p.x] != '1')
+		else if (game_init->map_init.grid[game_init->map_init.height - 1][p.x] != '1')
 			return (1);
 		p.x++;
 	}
 	p.x = 0;
-	while (p.y < data->map.height)
+	while (p.y < game_init->map_init.height)
 	{
-		if (data->map.grid[p.y][p.x] != '1')
+		if (game_init->map_init.grid[p.y][p.x] != '1')
 			return (1);
-		else if (data->map.grid[p.y][data->map.width - 1] != '1')
+		else if (game_init->map_init.grid[p.y][game_init->map_init.width - 1] != '1')
 			return (1);
 		p.y++;
 	}
