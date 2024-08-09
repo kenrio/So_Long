@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:15:15 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/07 17:00:50 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/09 20:58:16 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,6 @@ void	parse_map(t_map_data *map)
 	if (map->height == 0)
 		exit_error("Map file is empty.");
 	ft_printf("Check map shape: OK!\n");
-}
-
-void	check_map_path(t_game *data, t_point p_pos)
-{
-	t_point	map_size;
-
-	map_size.x = data->map_init.width;
-	map_size.y = data->map_init.height;
-	if (p_pos.x > map_size.x || p_pos.y > map_size.y || \
-		data->map_init.grid[p_pos.y][p_pos.x] == '1' || \
-		data->map_init.tiles[p_pos.y][p_pos.x].v == 1)
-		return ;
-	data->map_init.tiles[p_pos.y][p_pos.x].v = 1;
-	if (data->map_init.grid[p_pos.y][p_pos.x] == 'E')
-		data->map_init.exit_access = 1;
-	else if (data->map_init.grid[p_pos.y][p_pos.x] == 'C')
-		data->map_init.collectible_access++;
-	check_map_path(data, (t_point){p_pos.x - 1, p_pos.y});
-	check_map_path(data, (t_point){p_pos.x + 1, p_pos.y});
-	check_map_path(data, (t_point){p_pos.x, p_pos.y - 1});
-	check_map_path(data, (t_point){p_pos.x, p_pos.y + 1});
 }
 
 void	check_map_status(t_game *data)
@@ -109,4 +88,22 @@ void	fill_map(t_game *data)
 	// free_grid(data);
 	// free_tiles(data);
 	ft_printf("Check map content: OK!\n");
+}
+
+int	check_map_width(t_game *game_init)
+{
+	int		i;
+
+	i = 0;
+	while (i < game_init->map_init.height)
+	{
+		printf("width[%d]: %zu\n", i, ft_linelen(game_init->map_init.grid[i]));
+		if (game_init->map_init.width != (int)ft_linelen(game_init->map_init.grid[i]))
+		{
+			ft_printf("Incorrect line width.\n");
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }

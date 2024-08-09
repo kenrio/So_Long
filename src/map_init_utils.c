@@ -6,57 +6,11 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 10:20:59 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/09 14:38:52 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/09 15:15:15 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	check_map_width(t_game *game_init)
-{
-	int		i;
-	size_t	width;
-
-	width = ft_linelen(game_init->map_init.grid[0]);
-	i = 1;
-	while (i < game_init->map_init.height)
-	{
-		if (width != ft_linelen(game_init->map_init.grid[i]))
-		{
-			ft_printf("Incorrect line width.\n");
-			return (1);
-		}
-		i++;
-	}
-	game_init->map_init.width = width;
-	return (0);
-}
-
-int	check_map_wall(t_game *game_init)
-{
-	t_point	p;
-
-	p.y = 0;
-	while (p.y < game_init->map_init.height)
-	{
-		p.x = 0;
-		while (p.x < game_init->map_init.width)
-		{
-			if (p.x == 0 || p.y == 0 || p.x == game_init->map_init.width - 1
-				|| p.y == game_init->map_init.height - 1)
-			{
-				if (game_init->map_init.grid[p.y][p.x] != '1')
-				{
-					ft_printf("Unclosed wall.\n");
-					return (1);
-				}
-			}
-			p.x++;
-		}
-		p.y++;
-	}
-	return (0);
-}
 
 int	count_map_objects(t_game *game_init)
 {
@@ -104,3 +58,24 @@ int	check_map_objects(t_game *game_init)
 	}
 	return (0);
 }
+
+// int	check_map_path(t_game *data, t_point p_pos)
+// {
+// 	t_point	map_size;
+
+// 	map_size.x = data->map_init.width;
+// 	map_size.y = data->map_init.height;
+// 	if (p_pos.x > map_size.x || p_pos.y > map_size.y ||
+// 		data->map_init.grid[p_pos.y][p_pos.x] == '1' ||
+// 		data->map_init.v[p_pos.y][p_pos.x].v == 1)
+// 		return (1);
+// 	data->map_init.tiles[p_pos.y][p_pos.x].v = 1;
+// 	if (data->map_init.grid[p_pos.y][p_pos.x] == 'E')
+// 		data->map_init.exit_access = 1;
+// 	else if (data->map_init.grid[p_pos.y][p_pos.x] == 'C')
+// 		data->map_init.collectible_access++;
+// 	check_map_path(data, (t_point){p_pos.x - 1, p_pos.y});
+// 	check_map_path(data, (t_point){p_pos.x + 1, p_pos.y});
+// 	check_map_path(data, (t_point){p_pos.x, p_pos.y - 1});
+// 	check_map_path(data, (t_point){p_pos.x, p_pos.y + 1});
+// }

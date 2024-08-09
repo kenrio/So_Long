@@ -53,7 +53,7 @@ ${NAME}: ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
 	${CC} ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
 
 debug: ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
-	${CC} -g ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
+	${CC} -fsanitize=address -g ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
 
 %.o: %.c
 	${CC} ${CFLAGS} -Iminilibx -Iincludes -c $< -o $@

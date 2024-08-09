@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:47:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/09 13:14:42 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/09 21:54:35 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,29 +62,74 @@ int	count_map_lines(char *file_path)
 
 void	read_map(t_game *game_init, int fd)
 {
-	int		i;
+	t_point	p;
 	char	*line;
 
 	game_init->map_init.grid
 		= malloc(game_init->map_init.height * sizeof(char *));
+	game_init->map_init.tile
+		= (t_tile **)malloc(game_init->map_init.height * sizeof(t_tile *));
 	if (!game_init->map_init.grid)
 	{
 		close(fd);
 		exit_error("Failed to allocate memory.");
 	}
-	i = 0;
+	p.y = 0;
 	line = get_next_line(fd);
-	while (line)
+	game_init->map_init.width = ft_linelen(line);
+	while (line && p.y < game_init->map_init.height)
 	{
-		game_init->map_init.grid[i++] = line;
+		fill_grid(game_init, line, p);
+		free(line);
+		p.y++;
 		line = get_next_line(fd);
 	}
-	if (check_map_width(game_init) || check_map_wall(game_init)
-		|| count_map_objects(game_init))
+	free(line);
+	if (check_map_wall(game_init) || count_map_objects(game_init))
 	{
 		close(fd);
 		free_grid(game_init);
 		exit_error("Map is not valid.");
 	}
 	return ;
+}
+
+void	fill_grid(t_game *game_init, char *line, t_point grid_pos)
+{
+	game_init->map_init.grid[grid_pos.y]
+		= malloc((game_init->map_init.width) * sizeof(char));
+	game_init->map_init.tile[grid_pos.y]
+		= malloc((game_init->map_init.width) * sizeof(t_tile));
+	grid_pos.x = 0;
+	while (grid_pos.x < game_init->map_init.width)
+	{
+		game_init->map_init.grid[grid_pos.y][grid_pos.x] = line[grid_pos.x];
+		game_init->map_init.tile[grid_pos.y][grid_pos.x].c = line[grid_pos.x];
+		grid_pos.x++;
+	}
+}
+
+int	check_map_wall(t_game *game_init)
+{
+	t_point	p;
+
+	p.y = 0;
+	while (p.y < game_init->map_init.height)
+	{
+		p.x = 0;
+		while (p.x < game_init->map_init.width)
+		{
+			if (p.x == 0 || p.y == 0 || p.x == game_init->map_init.width - 1
+				|| p.y == game_init->map_init.height - 1)
+			{
+				if (game_init->map_init.grid[p.y] == NULL)
+					return (1);
+				if (game_init->map_init.grid[p.y][p.x] != '1')
+					return (1);
+			}
+			p.x++;
+		}
+		p.y++;
+	}
+	return (0);
 }

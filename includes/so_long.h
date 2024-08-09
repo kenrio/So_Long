@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/09 14:17:14 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/09 19:01:05 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_player
 
 typedef struct s_tile
 {
-	char	t;
+	char	c;
 	int		v;
 }				t_tile;
 
@@ -75,12 +75,11 @@ typedef struct s_game_data
 typedef struct s_map_data
 {
 	char	**grid;
-	int		count_lines;
+	t_tile	**tile;
 	int		width;
 	int		height;
 	char	*path;
 	int		fd;
-	t_tile	**tiles;
 	int		exit_access;
 	int		collectible_access;
 }				t_map_data;
@@ -105,6 +104,7 @@ void	open_map(t_game *game_init, char *file_path);
 int		check_map_extension(char *s);
 int		count_map_lines(char *file_path);
 void	read_map(t_game *game_init, int fd);
+void	fill_grid(t_game *game_init, char *line, t_point grid_pos);
 void	free_grid(t_game *game_init);
 int		check_map_width(t_game *game_init);
 int		check_map_wall(t_game *data);
