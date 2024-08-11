@@ -15,8 +15,9 @@ CFLAGS		= -Wall -Wextra -Werror
 SRC_FILES			= ${addprefix src/, \
 					main \
 					utils \
-					map_parser \
-					map_parser_utils \
+					map_init \
+					map_init_utils \
+					allocate \
 					free }
 
 PRINTF_SRC_FILES	= ${addprefix ft_printf/, \
@@ -53,7 +54,7 @@ ${NAME}: ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
 	${CC} ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
 
 debug: ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
-	${CC} -g ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
+	${CC} -fsanitize=address -g ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
 
 %.o: %.c
 	${CC} ${CFLAGS} -Iminilibx -Iincludes -c $< -o $@

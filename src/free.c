@@ -6,38 +6,40 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 14:51:24 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/03 15:01:25 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/12 02:05:35 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_grid(t_data *data)
+void	free_grid(t_game *game_init)
 {
-	size_t	i;
+	int	i;
 
+	if (!game_init->map_init.grid)
+		return ;
 	i = 0;
-	while (i < data->map.height)
-	{
-		free(data->map.grid[i]);
-		data->map.grid[i] = NULL;
-		i++;
-	}
-	free(data->map.grid);
-	data->map.grid = NULL;
+	while (i < game_init->map_init.height)
+			free(game_init->map_init.grid[i++]);
+	free(game_init->map_init.grid);
+	game_init->map_init.grid = NULL;
 }
 
-void	free_tiles(t_data *data)
+void	free_tile(t_game *game_init)
 {
-	size_t	i;
+	int	i;
 
+	if (!game_init->map_init.tile)
+		return ;
 	i = 0;
-	while (i < data->map.height)
-	{
-		free(data->map.tiles[i]);
-		data->map.tiles[i] = NULL;
-		i++;
-	}
-	free(data->map.tiles);
-	data->map.tiles = NULL;
+	while (i < game_init->map_init.height)
+			free(game_init->map_init.tile[i++]);
+	free(game_init->map_init.tile);
+	game_init->map_init.tile = NULL;
+}
+
+void	free_grid_and_tile(t_game *game_init)
+{
+	free_grid(game_init);
+	free_tile(game_init);
 }

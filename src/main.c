@@ -6,28 +6,26 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:50:31 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/03 16:38:54 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/11 17:40:53 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// __attribute__((destructor))
-// static void destructor() {
-//     system("leaks -q so_long");
-// }
-
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_game	game_init;
 
+	game_struct_init(&game_init);
 	if (argc != 2)
-		exit_error("Wrong inputs.\nCheck usage: ./so_long <map name>.ber");
-	else if (argc == 2 && check_map_name(argv[1]))
-		exit_error("Wrong map name.");
-	ft_printf("Check inputs: OK!\n");
-	init_game(&data, argv[1]);
-	parse_map(&data.map);
-	fill_map(&data);
+		exit_error("Wrong inputs.\nUsage: ./so_long <file_path/filename>.ber");
+	ft_printf("Check input count: OK!\n");
+	open_map(&game_init, argv[1]);
+	ft_printf("\nProgram has successfully ended.\n");
 	return (0);
+}
+
+void	game_struct_init(t_game *game_init)
+{
+	*game_init = (t_game){0};
 }
