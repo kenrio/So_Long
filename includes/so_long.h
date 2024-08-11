@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/11 17:55:13 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/12 00:32:42 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ typedef struct s_game
 	t_game_objs			game_objs;
 	t_map_data			map_init;
 	t_game_data			game_data;
+	t_player			player;
 	t_game_resolutions	resolution_init;
-	t_player	player;
 	int			start_found;
 	int			exit_found;
 	int			collectibles;
@@ -110,11 +110,11 @@ void	free_tile(t_game *game_init);
 void	free_grid_and_tile(t_game *game_init);
 void	allocate_grid(t_game *game_init, int fd);
 void	allocate_line(t_game *game_init, t_point grid_pos, int fd);
-int		check_map_width(t_game *game_init);
 int		check_map_wall(t_game *data);
 int		count_map_objects(t_game *game_init);
 int		check_map_objects(t_game *game_init);
 int		check_map_character(int c);
+int		check_map_path(t_game *game_init, t_point p_pos);
 size_t	ft_strlen(char *s);
 size_t	ft_linelen(char *s);
 void	exit_error(char *message);
