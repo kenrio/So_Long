@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/11 17:50:02 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/11 17:55:13 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	read_map(t_game *game_init, int fd);
 void	fill_grid(t_game *game_init, char *line, t_point grid_pos, int fd);
 void	free_grid(t_game *game_init);
 void	free_tile(t_game *game_init);
-void	fill_grid_and_tile(t_game *game_init);
+void	free_grid_and_tile(t_game *game_init);
 void	allocate_grid(t_game *game_init, int fd);
 void	allocate_line(t_game *game_init, t_point grid_pos, int fd);
 int		check_map_width(t_game *game_init);
