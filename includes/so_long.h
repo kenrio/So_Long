@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/09 19:01:05 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/11 17:29:47 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,11 @@ void	open_map(t_game *game_init, char *file_path);
 int		check_map_extension(char *s);
 int		count_map_lines(char *file_path);
 void	read_map(t_game *game_init, int fd);
-void	fill_grid(t_game *game_init, char *line, t_point grid_pos);
+void	fill_grid(t_game *game_init, char *line, t_point grid_pos, int fd);
 void	free_grid(t_game *game_init);
+void	free_tile(t_game *game_init);
+void	allocate_grid(t_game *game_init, int fd);
+void	allocate_line(t_game *game_init, t_point grid_pos, int fd);
 int		check_map_width(t_game *game_init);
 int		check_map_wall(t_game *data);
 int		count_map_objects(t_game *game_init);
@@ -118,7 +121,6 @@ void	init_game(t_game *data, char *map_path);
 void	parse_map(t_map_data *map);
 void	fill_map(t_game *data);
 void	init_map(t_game *data, t_point *p);
-void	allocate_line(t_game *data, t_point grid_pos);
 void	fill_tiles(t_game *data, char *line, t_point grid_pos);
 
 #endif

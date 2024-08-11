@@ -17,6 +17,7 @@ SRC_FILES			= ${addprefix src/, \
 					utils \
 					map_init \
 					map_init_utils \
+					allocate \
 					free }
 
 PRINTF_SRC_FILES	= ${addprefix ft_printf/, \
