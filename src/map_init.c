@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:47:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/11 17:40:43 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/11 17:52:21 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,7 @@ void	read_map(t_game *game_init, int fd)
 	if (check_map_wall(game_init) || count_map_objects(game_init))
 	{
 		close(fd);
-		free_grid(game_init);
-		free_tile(game_init);
+		free_grid_and_tile(game_init);
 		exit_error("Map is not valid.");
 	}
 }

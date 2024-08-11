@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 10:20:59 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/11 13:58:05 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/11 17:52:10 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int	check_map_width(t_game *game_init)
 	while (i < game_init->map_init.height)
 	{
 		printf("width[%d]: %zu\n", i, ft_linelen(game_init->map_init.grid[i]));
-		if (game_init->map_init.width != (int)ft_linelen(game_init->map_init.grid[i]))
+		if (game_init->map_init.width
+			!= (int)ft_linelen(game_init->map_init.grid[i]))
 		{
 			ft_printf("Incorrect line width.\n");
 			return (1);

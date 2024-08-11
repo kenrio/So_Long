@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 17:12:09 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/11 17:27:22 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/11 17:51:56 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	allocate_line(t_game *game_init, t_point grid_pos, int fd)
 		= malloc((game_init->map_init.width) * sizeof(char));
 	game_init->map_init.tile[grid_pos.y]
 		= malloc((game_init->map_init.width) * sizeof(t_tile));
-	if (!game_init->map_init.grid[grid_pos.y] || !game_init->map_init.tile[grid_pos.y])
+	if (!game_init->map_init.grid[grid_pos.y]
+		|| !game_init->map_init.tile[grid_pos.y])
 	{
 		close(fd);
 		exit_error("Failed to allocate memory.");

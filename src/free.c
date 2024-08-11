@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 14:51:24 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/11 17:41:11 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/11 17:52:20 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,10 @@ void	free_tile(t_game *game_init)
 	}
 	free(game_init->map_init.tile);
 	game_init->map_init.tile = NULL;
+}
+
+void	free_grid_and_tile(t_game *game_init)
+{
+	free_grid(game_init);
+	free_grid(game_init);
 }
