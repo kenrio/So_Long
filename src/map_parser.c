@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:15:15 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/09 20:58:16 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/11 13:57:47 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,22 +88,4 @@ void	fill_map(t_game *data)
 	// free_grid(data);
 	// free_tiles(data);
 	ft_printf("Check map content: OK!\n");
-}
-
-int	check_map_width(t_game *game_init)
-{
-	int		i;
-
-	i = 0;
-	while (i < game_init->map_init.height)
-	{
-		printf("width[%d]: %zu\n", i, ft_linelen(game_init->map_init.grid[i]));
-		if (game_init->map_init.width != (int)ft_linelen(game_init->map_init.grid[i]))
-		{
-			ft_printf("Incorrect line width.\n");
-			return (1);
-		}
-		i++;
-	}
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:47:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/11 13:40:41 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/11 14:50:51 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	read_map(t_game *game_init, int fd)
 		= malloc(game_init->map_init.height * sizeof(char *));
 	game_init->map_init.tile
 		= (t_tile **)malloc(game_init->map_init.height * sizeof(t_tile *));
-	if (!game_init->map_init.grid)
+	if (!game_init->map_init.grid || !game_init->map_init.tile)
 	{
 		close(fd);
 		exit_error("Failed to allocate memory.");
@@ -77,8 +77,17 @@ void	read_map(t_game *game_init, int fd)
 	p.y = 0;
 	line = get_next_line(fd);
 	game_init->map_init.width = ft_linelen(line);
-	while (line && p.y < game_init->map_init.height)
+	printf("game_init->map_init.height: %d\n", game_init->map_init.height);
+	printf("game_init->map_init.width: %d\n", game_init->map_init.width);
+	while (p.y < game_init->map_init.height)
 	{
+		printf("[%d]ft_linelen(line): %zu\n", p.y, ft_linelen(line));
+		if (game_init->map_init.width != (int)ft_linelen(line))
+		{
+			close(fd);
+			free_grid(game_init);
+			exit_error("Incorrect line width.");
+		}
 		fill_grid(game_init, line, p);
 		free(line);
 		p.y++;
