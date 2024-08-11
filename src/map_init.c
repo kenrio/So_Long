@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:47:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/11 22:35:55 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/12 01:42:31 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	read_map(t_game *game_init, int fd)
 	}
 	free(line);
 	if (check_map_wall(game_init) || count_map_objects(game_init)
-		|| check_map_path(game_init, game_init->player.start_pos))
+		|| check_map_status(game_init))
 	{
 		close(fd);
 		free_grid_and_tile(game_init);

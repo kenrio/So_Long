@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:15:15 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/11 13:57:47 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/12 00:49:29 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,6 @@ void	parse_map(t_map_data *map)
 	if (map->height == 0)
 		exit_error("Map file is empty.");
 	ft_printf("Check map shape: OK!\n");
-}
-
-void	check_map_status(t_game *data)
-{
-	if (data->start_found <= 0)
-		exit_error("Map has no start point.");
-	else if (data->start_found > 1)
-		exit_error("Map has multiple start points.");
-	else if (data->collectibles <= 0)
-		exit_error("Map has no collectibles.");
-	else if (data->collectibles != data->map_init.collectible_access)
-		exit_error("Some collectibles are inaccessible.");
-	else if (data->exit_found <= 0)
-		exit_error("Map has no exit.");
-	else if (data->exit_found > 1)
-		exit_error("Map has multiple exits.");
-	else if (data->map_init.exit_access == 0)
-		exit_error("The exit is inaccessible.");
 }
 
 void	fill_map(t_game *data)

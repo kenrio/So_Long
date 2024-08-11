@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 17:12:09 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/11 17:51:56 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/12 02:05:40 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	allocate_grid(t_game *game_init, int fd)
 {
 	game_init->map_init.grid
-		= malloc(game_init->map_init.height * sizeof(char *));
+		= (char **)malloc(game_init->map_init.height * sizeof(char *));
 	game_init->map_init.tile
 		= (t_tile **)malloc(game_init->map_init.height * sizeof(t_tile *));
 	if (!game_init->map_init.grid || !game_init->map_init.tile)
