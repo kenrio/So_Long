@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/12 15:53:12 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/12 16:00:21 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,7 @@ void	exit_error(char *message);
 void	free_and_exit(int fd, t_game *game_init, char *message);
 size_t	ft_strlen(char *s);
 size_t	ft_linelen(char *s);
+
+void	initialize_game(t_game *game_init);
 
 #endif
