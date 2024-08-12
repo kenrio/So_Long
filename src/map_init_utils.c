@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 10:20:59 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/12 01:57:28 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/12 14:59:39 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void	check_map_path(t_game *game_init, t_point p_pos)
 		return ;
 	game_init->map_init.tile[p_pos.y][p_pos.x].v = 1;
 	if (game_init->map_init.grid[p_pos.y][p_pos.x] == 'E')
-		game_init->map_init.exit_access++;
+		game_init->game_data.exit_access++;
 	else if (game_init->map_init.grid[p_pos.y][p_pos.x] == 'C')
-		game_init->map_init.collectible_access++;
+		game_init->game_data.collectible_access++;
 	check_map_path(game_init, (t_point){p_pos.x - 1, p_pos.y});
 	check_map_path(game_init, (t_point){p_pos.x + 1, p_pos.y});
 	check_map_path(game_init, (t_point){p_pos.x, p_pos.y - 1});
@@ -89,12 +89,12 @@ int	check_map_status(t_game *game_init)
 {
 	check_map_path(game_init, game_init->player.start_pos);
 	if (game_init->game_data.count_collectibles
-		!= game_init->map_init.collectible_access)
+		!= game_init->game_data.collectible_access)
 	{
 		ft_printf("Some collectibles are inaccessible.\n");
 		return (1);
 	}
-	else if (game_init->map_init.exit_access == 0)
+	else if (game_init->game_data.exit_access == 0)
 	{
 		ft_printf("The exit is inaccessible.\n");
 		return (1);

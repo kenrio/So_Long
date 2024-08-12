@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:47:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/12 01:42:31 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/12 14:57:26 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,7 @@ void	read_map(t_game *game_init, int fd)
 	while (p.y < game_init->map_init.height)
 	{
 		if (game_init->map_init.width != (int)ft_linelen(line))
-		{
-			close(fd);
-			exit_error("Incorrect line width.");
-		}
+			free_and_exit(fd, game_init, "Incorrect line width.");
 		fill_grid(game_init, line, p, fd);
 		p.y++;
 		line = get_next_line(fd);
@@ -83,11 +80,7 @@ void	read_map(t_game *game_init, int fd)
 	free(line);
 	if (check_map_wall(game_init) || count_map_objects(game_init)
 		|| check_map_status(game_init))
-	{
-		close(fd);
-		free_grid_and_tile(game_init);
-		exit_error("Map is not valid.");
-	}
+		free_and_exit(fd, game_init, "Map is not valid.");
 }
 
 void	fill_grid(t_game *game_init, char *line, t_point grid_pos, int fd)
@@ -115,12 +108,8 @@ int	check_map_wall(t_game *game_init)
 		{
 			if (p.x == 0 || p.y == 0 || p.x == game_init->map_init.width - 1
 				|| p.y == game_init->map_init.height - 1)
-			{
-				if (game_init->map_init.grid[p.y] == NULL)
-					return (1);
 				if (game_init->map_init.grid[p.y][p.x] != '1')
 					return (1);
-			}
 			p.x++;
 		}
 		p.y++;
