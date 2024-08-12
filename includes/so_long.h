@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/12 15:00:27 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/12 15:53:12 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,26 +94,25 @@ typedef struct s_game
 	void				*img;
 }						t_game;
 
-void	game_struct_init(t_game *game_init);
 void	open_map(t_game *game_init, char *file_path);
-int		check_map_extension(char *s);
-int		count_map_lines(char *file_path);
 void	read_map(t_game *game_init, int fd);
 void	fill_grid(t_game *game_init, char *line, t_point grid_pos, int fd);
-void	free_grid(t_game *game_init);
-void	free_tile(t_game *game_init);
-void	free_grid_and_tile(t_game *game_init);
+int		check_map_extension(char *s);
+int		count_map_lines(char *file_path);
+int		count_map_objects(t_game *game_init);
+int		check_map_wall(t_game *game_init);
+int		check_map_character(int c);
+int		check_map_objects(t_game *game_init);
+int		check_map_status(t_game *game_init);
+void	check_map_path(t_game *game_init, t_point p_pos);
 void	allocate_grid(t_game *game_init, int fd);
 void	allocate_line(t_game *game_init, t_point grid_pos, int fd);
-int		check_map_wall(t_game *data);
-int		count_map_objects(t_game *game_init);
-int		check_map_objects(t_game *game_init);
-int		check_map_character(int c);
-void	check_map_path(t_game *game_init, t_point p_pos);
-int		check_map_status(t_game *game_init);
-size_t	ft_strlen(char *s);
-size_t	ft_linelen(char *s);
+void	free_grid_and_tile(t_game *game_init);
+void	free_grid(t_game *game_init);
+void	free_tile(t_game *game_init);
 void	exit_error(char *message);
 void	free_and_exit(int fd, t_game *game_init, char *message);
+size_t	ft_strlen(char *s);
+size_t	ft_linelen(char *s);
 
 #endif

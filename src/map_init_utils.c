@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 10:20:59 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/12 14:59:39 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/12 15:56:08 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,23 @@ int	check_map_objects(t_game *game_init)
 	return (0);
 }
 
+int	check_map_status(t_game *game_init)
+{
+	check_map_path(game_init, game_init->player.start_pos);
+	if (game_init->game_data.count_collectibles
+		!= game_init->game_data.collectible_access)
+	{
+		ft_printf("Some collectibles are inaccessible.\n");
+		return (1);
+	}
+	else if (game_init->game_data.exit_access == 0)
+	{
+		ft_printf("The exit is inaccessible.\n");
+		return (1);
+	}
+	return (0);
+}
+
 void	check_map_path(t_game *game_init, t_point p_pos)
 {
 	t_point	map_size;
@@ -83,21 +100,4 @@ void	check_map_path(t_game *game_init, t_point p_pos)
 	check_map_path(game_init, (t_point){p_pos.x + 1, p_pos.y});
 	check_map_path(game_init, (t_point){p_pos.x, p_pos.y - 1});
 	check_map_path(game_init, (t_point){p_pos.x, p_pos.y + 1});
-}
-
-int	check_map_status(t_game *game_init)
-{
-	check_map_path(game_init, game_init->player.start_pos);
-	if (game_init->game_data.count_collectibles
-		!= game_init->game_data.collectible_access)
-	{
-		ft_printf("Some collectibles are inaccessible.\n");
-		return (1);
-	}
-	else if (game_init->game_data.exit_access == 0)
-	{
-		ft_printf("The exit is inaccessible.\n");
-		return (1);
-	}
-	return (0);
 }
