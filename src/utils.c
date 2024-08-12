@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:59:59 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/09 11:00:52 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/12 11:47:30 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,4 @@ void	exit_error(char *message)
 	ft_printf("\nError: ");
 	ft_printf("%s\n\n", message);
 	exit(1);
-}
-
-void	init_game(t_game *data, char *file_path)
-{
-	data->map_init.path = file_path;
-	data->start_found = 0;
-	data->exit_found = 0;
-	data->collectibles = 0;
-	data->map_init.exit_access = 0;
-	data->map_init.collectible_access = 0;
 }

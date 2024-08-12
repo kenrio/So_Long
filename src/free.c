@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 14:51:24 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/12 02:05:35 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/12 12:32:39 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ void	free_grid(t_game *game_init)
 		return ;
 	i = 0;
 	while (i < game_init->map_init.height)
-			free(game_init->map_init.grid[i++]);
+	{
+		if (game_init->map_init.grid[i])
+			free(game_init->map_init.grid[i]);
+		i++;
+	}
 	free(game_init->map_init.grid);
 	game_init->map_init.grid = NULL;
 }
@@ -33,7 +37,11 @@ void	free_tile(t_game *game_init)
 		return ;
 	i = 0;
 	while (i < game_init->map_init.height)
-			free(game_init->map_init.tile[i++]);
+	{
+		if (game_init->map_init.tile[i])
+			free(game_init->map_init.tile[i]);
+		i++;
+	}
 	free(game_init->map_init.tile);
 	game_init->map_init.tile = NULL;
 }
