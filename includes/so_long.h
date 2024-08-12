@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/12 14:51:30 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/12 15:00:27 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ typedef struct s_game_data
 	int	count_exit;
 	int	count_collectibles;
 	int	count_movements;
+	int	exit_access;
+	int	collectible_access;
 }				t_game_data;
 
 typedef struct s_map_data
@@ -78,10 +80,6 @@ typedef struct s_map_data
 	t_tile	**tile;
 	int		width;
 	int		height;
-	char	*path;
-	int		fd;
-	int		exit_access;
-	int		collectible_access;
 }				t_map_data;
 
 typedef struct s_game
@@ -93,9 +91,6 @@ typedef struct s_game
 	t_game_data			game_data;
 	t_player			player;
 	t_game_resolutions	resolution_init;
-	int					start_found;
-	int					exit_found;
-	int					collectibles;
 	void				*img;
 }						t_game;
 
@@ -119,6 +114,6 @@ int		check_map_status(t_game *game_init);
 size_t	ft_strlen(char *s);
 size_t	ft_linelen(char *s);
 void	exit_error(char *message);
-void	exit_and_free(int fd, t_game *game_init, char *message);
+void	free_and_exit(int fd, t_game *game_init, char *message);
 
 #endif
