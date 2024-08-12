@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/12 16:00:21 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/12 17:48:29 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include "mlx.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
+
+# define CELL_SIZE 32
 
 typedef struct s_point
 {
@@ -69,9 +71,9 @@ typedef struct s_game_data
 	int	count_player;
 	int	count_exit;
 	int	count_collectibles;
-	int	count_movements;
 	int	exit_access;
 	int	collectible_access;
+	int	count_movements;
 }				t_game_data;
 
 typedef struct s_map_data
