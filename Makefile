@@ -18,7 +18,10 @@ SRC_FILES			= ${addprefix src/, \
 					map_init \
 					map_init_utils \
 					allocate \
-					free }
+					free \
+					game_init \
+					game_events \
+					draw }
 
 PRINTF_SRC_FILES	= ${addprefix ft_printf/, \
 					ft_printf \
@@ -40,9 +43,12 @@ GNL_OBJ_FILES		= ${addsuffix .o, ${GNL_SRC_FILES}}
 # **************************************** #
 # LIBRARIES & FRAMEWORKS
 
+MLX_PATH	= minilibx/
+MLX_LIB		= libmlx_Linux.a
+
 # Error with -lmlx
-# LFLAGS		= -Lmlx -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
-LFLAGS		= -Lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
+LFLAGS		= -Lminilibx -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
+# LFLAGS		= -Lminilibx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
 
 # **************************************** #
 # RULES
@@ -51,9 +57,11 @@ LFLAGS		= -Lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
 all: ${NAME}
 
 ${NAME}: ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
+	make -C ${MLX_PATH}
 	${CC} ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
 
 debug: ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
+	make -C ${MLX_PATH}
 	${CC} -fsanitize=address -g ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
 
 %.o: %.c
@@ -61,13 +69,11 @@ debug: ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
 
 clean:
 	rm -f ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
+	make -C ${MLX_PATH} clean
 
 fclean: clean
-	make clean -C minilibx/
+	rm -f ${MLX_LIB}
 	rm -f ${NAME}
-
-mlx:
-	@${MAKE} re -C minilibx/
 
 re: fclean all
 

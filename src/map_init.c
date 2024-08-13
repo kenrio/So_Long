@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:47:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/12 14:57:26 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/12 16:45:33 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	open_map(t_game *game_init, char *file_path)
 	}
 	read_map(game_init, fd);
 	close(fd);
-	free_grid_and_tile(game_init);
 }
 
 int	count_map_lines(char *file_path)
