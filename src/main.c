@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:50:31 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/13 14:51:13 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/13 18:00:03 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int argc, char **argv)
 	open_map(&game_init, argv[1]);
 	initialize_game(&game_init);
 	game_start(&game_init);
-	mlx_loop(game_init.mlx_ptr);
 	ft_printf("\nProgram has successfully ended.\n");
 	return (0);
 }

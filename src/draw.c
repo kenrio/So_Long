@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:41:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/13 17:23:45 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/13 18:00:13 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	draw_map(t_game *game_init)
 				draw_img(game_init, game_init->game_objs.player, p.x, p.y);
 			else if (game_init->map_init.grid[p.y][p.x] == 'C')
 				draw_img(game_init, game_init->game_objs.collectibles, p.x, p.y);
+			else if (game_init->map_init.grid[p.y][p.x] == 'E')
+				draw_img(game_init, game_init->game_objs.exit, p.x, p.y);
 			p.x++;
 		}
 	}
