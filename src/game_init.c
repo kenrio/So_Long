@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:57:16 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/13 14:50:52 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/13 15:36:59 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,16 @@ void	initialize_game(t_game *game_init)
 		game_init->map_init.height * CELL_SIZE, "So Long");
 	if (!game_init->win_ptr)
 		exit_error("Failed to initialize new window (mlx_new_window())");
-	printf("count_movements: %d\n", game_init->game_data.count_movements);
 	initialize_game_img(game_init);
-	
 }
 
 void	initialize_game_img(t_game *game_init)
 {
-	set_img(game_init, &game_init->game_objs.floor,
+	load_img(game_init, &game_init->game_objs.floor,
 			"./textures/tiles_test.xpm");
 }
 
-void	set_img(t_game *game_init, void **image, char *file_path)
+void	load_img(t_game *game_init, void **image, char *file_path)
 {
 	int	width;
 	int	height;
@@ -41,6 +39,6 @@ void	set_img(t_game *game_init, void **image, char *file_path)
 	*image = mlx_xpm_file_to_image(game_init->mlx_ptr, file_path, &width, &height);
 	if (!*image)
 	{
-		exit_error("Failed to set image.");
+		exit_error("Failed to load image.");
 	}
 }
