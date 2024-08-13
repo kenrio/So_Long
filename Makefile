@@ -19,7 +19,9 @@ SRC_FILES			= ${addprefix src/, \
 					map_init_utils \
 					allocate \
 					free \
-					game_init }
+					game_init \
+					game_events \
+					draw }
 
 PRINTF_SRC_FILES	= ${addprefix ft_printf/, \
 					ft_printf \

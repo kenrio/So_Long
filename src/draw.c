@@ -1,0 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/13 14:41:20 by keishii           #+#    #+#             */
+/*   Updated: 2024/08/13 14:56:40 by keishii          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+int	draw_map(t_game *game_init)
+{
+	t_point p;
+
+	p.y = -1;
+	while (game_init->map_init.grid[++p.y])
+	{
+		p.x = 0;
+		while (game_init->map_init.grid[p.y][p.x])
+		{
+			if (game_init->map_init.grid[p.y][p.x] == '0')
+				draw_img(game_init, game_init->game_objs.floor, p.x, p.y);
+			p.x++;
+		}
+	}
+	return (0);
+}
+
+void	draw_img(t_game *game_init, void *img, int x, int y)
+{
+	mlx_put_image_to_window(game_init->mlx_ptr, game_init->win_ptr, img,
+							x * CELL_SIZE, y * CELL_SIZE);
+}

@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:57:16 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/12 23:43:36 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/13 14:50:52 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	initialize_game(t_game *game_init)
 
 void	initialize_game_img(t_game *game_init)
 {
-	set_img(game_init, &game_init->game_objs.floor, "./textures/tiles_test.xpm");
+	set_img(game_init, &game_init->game_objs.floor,
+			"./textures/tiles_test.xpm");
 }
 
 void	set_img(t_game *game_init, void **image, char *file_path)
@@ -37,7 +38,7 @@ void	set_img(t_game *game_init, void **image, char *file_path)
 	int	width;
 	int	height;
 
-	*image = mlx_xpm_file_to_image(game_init, file_path, &width, &height);
+	*image = mlx_xpm_file_to_image(game_init->mlx_ptr, file_path, &width, &height);
 	if (!*image)
 	{
 		exit_error("Failed to set image.");

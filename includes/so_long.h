@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/13 00:04:16 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/13 14:55:21 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct s_game
 	void				*img;
 }						t_game;
 
+void	initialize_game_struct(t_game *game_init);
 void	open_map(t_game *game_init, char *file_path);
 void	read_map(t_game *game_init, int fd);
 void	fill_grid(t_game *game_init, char *line, t_point grid_pos, int fd);
@@ -120,5 +121,8 @@ size_t	ft_linelen(char *s);
 void	initialize_game(t_game *game_init);
 void	initialize_game_img(t_game *game_init);
 void	set_img(t_game *game_init, void **image, char *file_path);
+void	game_start(t_game *game_init);
+int		draw_map(t_game *game_init);
+void	draw_img(t_game *game_init, void *img, int x, int y);
 
 #endif
