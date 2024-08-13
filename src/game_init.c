@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:57:16 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/13 15:36:59 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/13 17:01:52 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ void	initialize_game(t_game *game_init)
 void	initialize_game_img(t_game *game_init)
 {
 	load_img(game_init, &game_init->game_objs.floor,
-			"./textures/tiles_test.xpm");
+			"./textures/grass.xpm");
+	load_img(game_init, &game_init->game_objs.wall,
+			"./textures/tree.xpm");
+	load_img(game_init, &game_init->game_objs.player,
+			"./textures/player.xpm");
 }
 
 void	load_img(t_game *game_init, void **image, char *file_path)
