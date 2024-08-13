@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/12 17:48:29 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/13 00:04:16 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 
-# define CELL_SIZE 32
+# define CELL_SIZE 48
 
 typedef struct s_point
 {
@@ -47,6 +47,14 @@ typedef struct s_tile
 	int		v;
 }				t_tile;
 
+typedef struct s_game_resolutions
+{
+	int		settings_map_width;
+	int		settings_map_height;
+	char	*settings_name_window;
+	char	*settings_name_map;
+}				t_game_resolutions;
+
 typedef struct s_game_objs
 {
 	void	*player;
@@ -57,14 +65,6 @@ typedef struct s_game_objs
 	int		img_width;
 	int		img_height;
 }				t_game_objs;
-
-typedef struct s_game_resolutions
-{
-	int		settings_map_width;
-	int		settings_map_height;
-	char	*settings_name_window;
-	char	*settings_name_map;
-}				t_game_resolutions;
 
 typedef struct s_game_data
 {
@@ -88,10 +88,10 @@ typedef struct s_game
 {
 	void				*mlx_ptr;
 	void				*win_ptr;
-	t_game_objs			game_objs;
 	t_map_data			map_init;
 	t_game_data			game_data;
 	t_player			player;
+	t_game_objs			game_objs;
 	t_game_resolutions	resolution_init;
 	void				*img;
 }						t_game;
@@ -118,5 +118,7 @@ size_t	ft_strlen(char *s);
 size_t	ft_linelen(char *s);
 
 void	initialize_game(t_game *game_init);
+void	initialize_game_img(t_game *game_init);
+void	set_img(t_game *game_init, void **image, char *file_path);
 
 #endif
