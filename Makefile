@@ -19,6 +19,7 @@ SRC_FILES			= ${addprefix src/, \
 					map_init_utils \
 					allocate \
 					free \
+					exit \
 					game_init \
 					game_events \
 					draw }
@@ -62,7 +63,7 @@ ${NAME}: ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
 
 debug: ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
 	make -C ${MLX_PATH}
-	${CC} -fsanitize=address -g ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
+	${CC} -g ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
 
 %.o: %.c
 	${CC} ${CFLAGS} -Iminilibx -Iincludes -c $< -o $@

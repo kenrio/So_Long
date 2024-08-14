@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:59:59 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/12 14:56:30 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/14 16:47:11 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,4 @@ int	check_map_extension(char *s)
 	if (s[i] == 'r' && s[i - 1] == 'e' && s[i - 2] == 'b' && s[i - 3] == '.')
 		return (0);
 	return (1);
-}
-
-void	exit_error(char *message)
-{
-	ft_printf("\nError: ");
-	ft_printf("%s\n\n", message);
-	exit(1);
-}
-
-void	free_and_exit(int fd, t_game *game_init, char *message)
-{
-	close(fd);
-	free_grid_and_tile(game_init);
-	exit_error(message);
 }
