@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/13 16:54:10 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/14 13:07:53 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 
-# define CELL_SIZE 32
+# define CELL_SIZE 64
 
 typedef struct s_point
 {
