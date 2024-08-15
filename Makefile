@@ -22,6 +22,7 @@ SRC_FILES			= ${addprefix src/, \
 					exit \
 					game_init \
 					game_events \
+					game_events_utils \
 					draw }
 
 PRINTF_SRC_FILES	= ${addprefix ft_printf/, \
