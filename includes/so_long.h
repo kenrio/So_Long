@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/14 13:07:53 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/15 21:10:26 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,6 @@ void	load_img(t_game *game_init, void **image, char *file_path);
 void	game_start(t_game *game_init);
 int		draw_map(t_game *game_init);
 void	draw_img(t_game *game_init, void *img, int x, int y);
+void	free_img(t_game *game_init);
 
 #endif
