@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 14:51:24 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/15 21:36:55 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/16 11:36:57 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ void	free_img(t_game *game_init)
 {
 	if (game_init->game_objs.floor)
 		mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.floor);
-	else if (game_init->game_objs.wall)
+	if (game_init->game_objs.wall)
 		mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.wall);
-	else if (game_init->game_objs.player)
+	if (game_init->game_objs.player)
 		mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.player);
-	else if (game_init->game_objs.collectibles)
+	if (game_init->game_objs.collectibles)
 		mlx_destroy_image(game_init->mlx_ptr,
 			game_init->game_objs.collectibles);
-	else if (game_init->game_objs.exit)
+	if (game_init->game_objs.exit)
 		mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.exit);
 	game_init->game_objs = (t_game_objs){0};
 }
