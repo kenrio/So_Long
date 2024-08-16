@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/16 00:05:34 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/16 11:18:56 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 # include "get_next_line.h"
 
 # define CELL_SIZE 64
-# define ESC 9
+
+# define ESC 65307
 
 typedef struct s_point
 {
@@ -125,7 +126,7 @@ void	load_img(t_game *game_init, void **image, char *file_path);
 void	game_start(t_game *game_init);
 int		draw_map(t_game *game_init);
 void	draw_img(t_game *game_init, void *img, int x, int y);
-int		check_key_input(t_game *game_init, int key);
+int		check_key_input(int key, t_game *gam_init);
 void	free_img(t_game *game_init);
 int		exit_program(t_game *game_init, int key);
 
