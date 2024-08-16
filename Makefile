@@ -45,12 +45,12 @@ GNL_OBJ_FILES		= ${addsuffix .o, ${GNL_SRC_FILES}}
 # **************************************** #
 # LIBRARIES & FRAMEWORKS
 
+
 MLX_PATH	= minilibx/
 MLX_LIB		= libmlx_Linux.a
 
-# Error with -lmlx
 LFLAGS		= -Lminilibx -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
-# LFLAGS		= -Lminilibx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
+
 
 # **************************************** #
 # RULES
