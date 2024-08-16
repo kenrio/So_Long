@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/16 11:18:56 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/16 11:41:02 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,6 @@ int		draw_map(t_game *game_init);
 void	draw_img(t_game *game_init, void *img, int x, int y);
 int		check_key_input(int key, t_game *gam_init);
 void	free_img(t_game *game_init);
-int		exit_program(t_game *game_init, int key);
+void	exit_program(t_game *game_init, int key);
 
 #endif
