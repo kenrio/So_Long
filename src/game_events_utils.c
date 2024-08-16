@@ -6,13 +6,13 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 21:49:09 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/16 11:17:13 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/16 11:38:16 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int check_key_input(int key, t_game *game_init)
+int	check_key_input(int key, t_game *game_init)
 {
 	printf("key: %d\n", key);
 	exit_program(game_init, key);
