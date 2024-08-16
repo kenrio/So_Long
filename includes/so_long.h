@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/16 11:41:02 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/16 23:50:30 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@
 # define CELL_SIZE 64
 
 # define ESC 65307
+
+# define W 119
+# define S 115
+# define A 97
+# define D 100
+
+# define UP 65362
+# define DOWN 65364
+# define LEFT 65361
+# define RIGHT 65363
 
 typedef struct s_point
 {
@@ -127,6 +137,7 @@ void	game_start(t_game *game_init);
 int		draw_map(t_game *game_init);
 void	draw_img(t_game *game_init, void *img, int x, int y);
 int		check_key_input(int key, t_game *gam_init);
+void	update_map_objects(t_game *game_init, int key);
 void	free_img(t_game *game_init);
 void	exit_program(t_game *game_init, int key);
 

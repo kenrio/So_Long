@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:41:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/15 21:37:55 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/16 23:36:46 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	draw_map(t_game *game_init)
 			else if (game_init->map_init.grid[p.y][p.x] == '1')
 				draw_img(game_init, game_init->game_objs.wall, p.x, p.y);
 			else if (game_init->map_init.grid[p.y][p.x] == 'P')
-				draw_img(game_init, game_init->game_objs.player, p.x, p.y);
+				draw_img(game_init, game_init->game_objs.player,
+					game_init->player.pos.x, game_init->player.pos.y);
 			else if (game_init->map_init.grid[p.y][p.x] == 'C')
 				draw_img(game_init, game_init->game_objs.collectibles,
 					p.x, p.y);
