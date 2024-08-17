@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/16 23:50:30 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/17 21:41:11 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,9 @@ int		draw_map(t_game *game_init);
 void	draw_img(t_game *game_init, void *img, int x, int y);
 int		check_key_input(int key, t_game *gam_init);
 void	update_map_objects(t_game *game_init, int key);
+void	move_player(t_game *game_init, t_point p_pos, int x, int y);
+void	check_collectible(t_game *game_init, int x, int y);
+void	check_exit(t_game *game_init, int x, int y);
 void	free_img(t_game *game_init);
 void	exit_program(t_game *game_init, int key);
 

@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 21:49:09 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/17 00:21:20 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/17 21:53:18 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,39 +27,52 @@ void	update_map_objects(t_game *game_init, int key)
 	p_pos.x = game_init->player.pos.x;
 	p_pos.y = game_init->player.pos.y;
 	if (key == W || key == UP)
-	{
-		if (game_init->map_init.grid[p_pos.y - 1][p_pos.x] != '1')
-		{
-			game_init->map_init.grid[p_pos.y][p_pos.x] = '0';
-			game_init->map_init.grid[p_pos.y - 1][p_pos.x] = 'P';
-			game_init->player.pos.y--;
-		}
-	}
+		move_player(game_init, p_pos, p_pos.x, p_pos.y - 1);
 	else if (key == S || key == DOWN)
-	{
-		if (game_init->map_init.grid[p_pos.y + 1][p_pos.x] != '1')
-		{
-			game_init->map_init.grid[p_pos.y][p_pos.x] = '0';
-			game_init->map_init.grid[p_pos.y + 1][p_pos.x] = 'P';
-			game_init->player.pos.y++;
-		}
-	}
+		move_player(game_init, p_pos, p_pos.x, p_pos.y + 1);
 	else if (key == A || key == LEFT)
+		move_player(game_init, p_pos, p_pos.x - 1, p_pos.y);
+	else if (key == D || key == RIGHT)
+		move_player(game_init, p_pos, p_pos.x + 1, p_pos.y);
+}
+
+void	move_player(t_game *game_init, t_point p_pos, int x, int y)
+{
+	if (game_init->map_init.grid[y][x] != '1')
 	{
-		if (game_init->map_init.grid[p_pos.y][p_pos.x - 1] != '1')
+		check_collectible(game_init, x, y);
+		check_exit(game_init, x, y);
+		if (game_init->map_init.grid[y][x] != 'E')
 		{
 			game_init->map_init.grid[p_pos.y][p_pos.x] = '0';
-			game_init->map_init.grid[p_pos.y][p_pos.x - 1] = 'P';
-			game_init->player.pos.x--;
+			game_init->map_init.grid[y][x] = 'P';
+			if (y == p_pos.y - 1)
+				game_init->player.pos.y--;
+			else if (y == p_pos.y + 1)
+				game_init->player.pos.y++;
+			else if (x == p_pos.x - 1)
+				game_init->player.pos.x--;
+			else if (x == p_pos.x + 1)
+				game_init->player.pos.x++;
 		}
 	}
-	else if (key == D || key == RIGHT)
+}
+
+void	check_collectible(t_game *game_init, int x, int y)
+{
+	if (game_init->map_init.grid[y][x] == 'C')
+		game_init->game_data.count_collectibles--;
+	printf("Collectibles remaining on map: %d\n", game_init->game_data.count_collectibles);
+}
+
+void	check_exit(t_game *game_init, int x, int y)
+{
+	int	collectibles_on_map;
+
+	collectibles_on_map = game_init->game_data.count_collectibles;
+	if (game_init->map_init.grid[y][x] == 'E' && collectibles_on_map == 0)
 	{
-		if (game_init->map_init.grid[p_pos.y][p_pos.x + 1] != '1')
-		{
-			game_init->map_init.grid[p_pos.y][p_pos.x] = '0';
-			game_init->map_init.grid[p_pos.y][p_pos.x + 1] = 'P';
-			game_init->player.pos.x++;
-		}
+		ft_printf("Congratulations! You collected all the keys and found the chest!\n");
+		exit_program(game_init, ESC);
 	}
 }
