@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 21:49:09 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/17 21:53:18 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/17 23:57:59 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	check_key_input(int key, t_game *game_init)
 {
 	exit_program(game_init, key);
 	update_map_objects(game_init, key);
-	printf("player pos: (%d, %d)\n", game_init->player.pos.x, game_init->player.pos.y);
 	return (0);
 }
 
@@ -54,6 +53,9 @@ void	move_player(t_game *game_init, t_point p_pos, int x, int y)
 				game_init->player.pos.x--;
 			else if (x == p_pos.x + 1)
 				game_init->player.pos.x++;
+			game_init->game_data.count_movements++;
+			ft_printf("Number of movements: %u\n",
+				game_init->game_data.count_movements);
 		}
 	}
 }
@@ -62,7 +64,6 @@ void	check_collectible(t_game *game_init, int x, int y)
 {
 	if (game_init->map_init.grid[y][x] == 'C')
 		game_init->game_data.count_collectibles--;
-	printf("Collectibles remaining on map: %d\n", game_init->game_data.count_collectibles);
 }
 
 void	check_exit(t_game *game_init, int x, int y)
@@ -72,7 +73,8 @@ void	check_exit(t_game *game_init, int x, int y)
 	collectibles_on_map = game_init->game_data.count_collectibles;
 	if (game_init->map_init.grid[y][x] == 'E' && collectibles_on_map == 0)
 	{
-		ft_printf("Congratulations! You collected all the keys and found the chest!\n");
+		ft_printf("Congratulations!\n");
+		ft_printf("You've collected all the keys and found the chest!\n");
 		exit_program(game_init, ESC);
 	}
 }

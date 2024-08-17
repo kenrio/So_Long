@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:41:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/16 23:36:46 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/18 01:18:16 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	draw_map(t_game *game_init)
 	t_point	p;
 
 	p.y = -1;
-	while (game_init->map_init.grid[++p.y])
+	while (++p.y < game_init->map_init.height)
 	{
 		p.x = 0;
-		while (game_init->map_init.grid[p.y][p.x])
+		while (p.x < game_init->map_init.width)
 		{
 			if (game_init->map_init.grid[p.y][p.x] == '0')
 				draw_img(game_init, game_init->game_objs.floor, p.x, p.y);

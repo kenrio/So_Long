@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/17 21:41:11 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/18 01:23:54 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,6 @@ typedef struct s_tile
 	int		v;
 }				t_tile;
 
-typedef struct s_game_resolutions
-{
-	int		settings_map_width;
-	int		settings_map_height;
-	char	*settings_name_window;
-	char	*settings_name_map;
-}				t_game_resolutions;
-
 typedef struct s_game_objs
 {
 	void	*player;
@@ -74,18 +66,16 @@ typedef struct s_game_objs
 	void	*exit;
 	void	*wall;
 	void	*floor;
-	int		img_width;
-	int		img_height;
 }				t_game_objs;
 
 typedef struct s_game_data
 {
-	int	count_player;
-	int	count_exit;
-	int	count_collectibles;
-	int	exit_access;
-	int	collectible_access;
-	int	count_movements;
+	int		count_player;
+	int		count_exit;
+	int		count_collectibles;
+	int		exit_access;
+	int		collectible_access;
+	size_t	count_movements;
 }				t_game_data;
 
 typedef struct s_map_data
@@ -104,8 +94,6 @@ typedef struct s_game
 	t_game_data			game_data;
 	t_player			player;
 	t_game_objs			game_objs;
-	t_game_resolutions	resolution_init;
-	void				*img;
 }						t_game;
 
 void	initialize_game_struct(t_game *game_init);
