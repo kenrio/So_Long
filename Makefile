@@ -47,7 +47,6 @@ GNL_OBJ_FILES		= ${addsuffix .o, ${GNL_SRC_FILES}}
 
 
 MLX_PATH	= minilibx/
-MLX_LIB		= libmlx_Linux.a
 
 LFLAGS		= -Lminilibx -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
 
@@ -74,7 +73,6 @@ clean:
 	make -C ${MLX_PATH} clean
 
 fclean: clean
-	rm -f ${MLX_LIB}
 	rm -f ${NAME}
 
 re: fclean all

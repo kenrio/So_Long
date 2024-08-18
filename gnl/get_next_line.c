@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 15:59:41 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/18 14:20:59 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/18 15:36:04 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_next_line(int fd)
 	stash = extract_new_stash(stash);
 	if (!stash)
 		return (free_and_null(line));
-	return (free(stash), line);
+	return (line);
 }
 
 static char	*fill_stash(int fd, char *stash)
