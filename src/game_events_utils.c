@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 21:49:09 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/17 23:57:59 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/18 15:54:59 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ void	check_exit(t_game *game_init, int x, int y)
 	collectibles_on_map = game_init->game_data.count_collectibles;
 	if (game_init->map_init.grid[y][x] == 'E' && collectibles_on_map == 0)
 	{
-		ft_printf("Congratulations!\n");
+		ft_printf("\nCongratulations!\n");
 		ft_printf("You've collected all the keys and found the chest!\n");
+		ft_printf("Score: %u.\n\n", game_init->game_data.count_movements);
 		exit_program(game_init, ESC);
 	}
 }

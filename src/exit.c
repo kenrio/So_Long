@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:46:52 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/18 15:35:34 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/18 15:55:14 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	exit_error(char *message)
 {
-	ft_printf("\nError: ");
+	ft_printf("\nError:\n");
 	ft_printf("%s\n\n", message);
 	exit(1);
 }
