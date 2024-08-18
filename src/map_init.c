@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:47:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/18 14:12:04 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/18 15:36:25 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	read_map(t_game *game_init, int fd)
 		}
 		fill_grid(game_init, line, p, fd);
 		p.y++;
-		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
