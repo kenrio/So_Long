@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:46:52 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/18 15:55:14 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/18 16:45:08 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,10 @@ void	exit_program(t_game *game_init, int key)
 		ft_printf("Exiting program.\n");
 		exit(1);
 	}
+}
+
+int	close_window(t_game *game_init)
+{
+	exit_program(game_init, ESC);
+	return (0);
 }
