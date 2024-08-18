@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/18 16:27:14 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/18 16:45:04 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,6 @@ void	check_collectible(t_game *game_init, int x, int y);
 void	check_exit(t_game *game_init, int x, int y);
 void	free_img(t_game *game_init);
 void	exit_program(t_game *game_init, int key);
+int		close_window(t_game *game_init);
 
 #endif
