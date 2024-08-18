@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:41:50 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/18 01:23:54 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/18 13:57:45 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,14 +107,16 @@ int		check_map_wall(t_game *game_init);
 int		check_map_character(int c);
 int		check_map_objects(t_game *game_init);
 int		check_map_status(t_game *game_init);
-void	check_map_path(t_game *game_init, t_point p_pos);
+void	check_path_to_collectible(t_game *game_init, t_point p_pos);
+void	check_path_to_exit(t_game *game_init, t_point p_pos);
+void	initialize_tiles(t_game *game_init);
 void	allocate_grid(t_game *game_init, int fd);
 void	allocate_line(t_game *game_init, t_point grid_pos, int fd);
 void	free_grid_and_tile(t_game *game_init);
 void	free_grid(t_game *game_init);
 void	free_tile(t_game *game_init);
-void	exit_error(char *message);
 void	free_and_exit(int fd, t_game *game_init, char *message);
+void	exit_error(char *message);
 size_t	ft_strlen(char *s);
 size_t	ft_linelen(char *s);
 

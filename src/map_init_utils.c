@@ -6,40 +6,11 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 10:20:59 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/18 01:52:32 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/18 13:40:44 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	count_map_objects(t_game *game_init)
-{
-	t_point	p;
-
-	p.x = 0;
-	while (p.x < game_init->map_init.width)
-	{
-		p.y = 0;
-		while (p.y < game_init->map_init.height)
-		{
-			if (check_map_character(game_init->map_init.grid[p.y][p.x]))
-				return (1);
-			if (game_init->map_init.grid[p.y][p.x] == 'P')
-			{
-				game_init->game_data.count_player++;
-				game_init->player.start_pos = p;
-				game_init->player.pos = p;
-			}
-			else if (game_init->map_init.grid[p.y][p.x] == 'E')
-				game_init->game_data.count_exit++;
-			else if (game_init->map_init.grid[p.y][p.x] == 'C')
-				game_init->game_data.count_collectibles++;
-			p.y++;
-		}
-		p.x++;
-	}
-	return (check_map_objects(game_init));
-}
 
 int	check_map_character(int c)
 {
@@ -65,7 +36,9 @@ int	check_map_objects(t_game *game_init)
 
 int	check_map_status(t_game *game_init)
 {
-	check_map_path(game_init, game_init->player.start_pos);
+	check_path_to_collectible(game_init, game_init->player.start_pos);
+	initialize_tiles(game_init);
+	check_path_to_exit(game_init, game_init->player.start_pos);
 	if (game_init->game_data.count_collectibles
 		!= game_init->game_data.collectible_access)
 	{
@@ -80,7 +53,28 @@ int	check_map_status(t_game *game_init)
 	return (0);
 }
 
-void	check_map_path(t_game *game_init, t_point p_pos)
+void	check_path_to_collectible(t_game *game_init, t_point p_pos)
+{
+	t_point	map_size;
+
+	map_size.x = game_init->map_init.width;
+	map_size.y = game_init->map_init.height;
+	if (p_pos.x < 0 || p_pos.y < 0
+		|| p_pos.x > map_size.x || p_pos.y > map_size.y
+		|| game_init->map_init.grid[p_pos.y][p_pos.x] == '1'
+		|| game_init->map_init.grid[p_pos.y][p_pos.x] == 'E'
+		|| game_init->map_init.tile[p_pos.y][p_pos.x].v == 1)
+		return ;
+	game_init->map_init.tile[p_pos.y][p_pos.x].v = 1;
+	if (game_init->map_init.grid[p_pos.y][p_pos.x] == 'C')
+		game_init->game_data.collectible_access++;
+	check_path_to_collectible(game_init, (t_point){p_pos.x - 1, p_pos.y});
+	check_path_to_collectible(game_init, (t_point){p_pos.x + 1, p_pos.y});
+	check_path_to_collectible(game_init, (t_point){p_pos.x, p_pos.y - 1});
+	check_path_to_collectible(game_init, (t_point){p_pos.x, p_pos.y + 1});
+}
+
+void	check_path_to_exit(t_game *game_init, t_point p_pos)
 {
 	t_point	map_size;
 
@@ -94,10 +88,8 @@ void	check_map_path(t_game *game_init, t_point p_pos)
 	game_init->map_init.tile[p_pos.y][p_pos.x].v = 1;
 	if (game_init->map_init.grid[p_pos.y][p_pos.x] == 'E')
 		game_init->game_data.exit_access++;
-	else if (game_init->map_init.grid[p_pos.y][p_pos.x] == 'C')
-		game_init->game_data.collectible_access++;
-	check_map_path(game_init, (t_point){p_pos.x - 1, p_pos.y});
-	check_map_path(game_init, (t_point){p_pos.x + 1, p_pos.y});
-	check_map_path(game_init, (t_point){p_pos.x, p_pos.y - 1});
-	check_map_path(game_init, (t_point){p_pos.x, p_pos.y + 1});
+	check_path_to_exit(game_init, (t_point){p_pos.x - 1, p_pos.y});
+	check_path_to_exit(game_init, (t_point){p_pos.x + 1, p_pos.y});
+	check_path_to_exit(game_init, (t_point){p_pos.x, p_pos.y - 1});
+	check_path_to_exit(game_init, (t_point){p_pos.x, p_pos.y + 1});
 }
