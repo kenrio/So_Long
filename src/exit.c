@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:46:52 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/16 12:28:16 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/18 15:35:34 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	exit_error(char *message)
 void	free_and_exit(int fd, t_game *game_init, char *message)
 {
 	close(fd);
+	get_next_line(-1);
 	free_grid_and_tile(game_init);
 	exit_error(message);
 }
