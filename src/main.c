@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:50:31 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/13 18:00:03 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/18 13:41:07 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ int	main(int argc, char **argv)
 
 void	initialize_game_struct(t_game *game_init)
 {
-	// t_game_objs *objects;
+	t_game_objs	*objects;
 
 	*game_init = (t_game){0};
-	// game_init->mlx_ptr = NULL;
-	// game_init->win_ptr = NULL;
-	// objects = malloc(sizeof(t_game_objs));
-	// if (!objects)
-	// 	exit_error("Failed to allocate memory.");
-	// game_init->game_objs = *objects;
-	// free(objects);
+	game_init->mlx_ptr = NULL;
+	game_init->win_ptr = NULL;
+	objects = malloc(sizeof(t_game_objs));
+	if (!objects)
+		exit_error("Failed to allocate memory.");
+	game_init->game_objs = *objects;
+	free(objects);
 }

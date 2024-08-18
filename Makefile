@@ -19,8 +19,10 @@ SRC_FILES			= ${addprefix src/, \
 					map_init_utils \
 					allocate \
 					free \
+					exit \
 					game_init \
 					game_events \
+					game_events_utils \
 					draw }
 
 PRINTF_SRC_FILES	= ${addprefix ft_printf/, \
@@ -43,12 +45,12 @@ GNL_OBJ_FILES		= ${addsuffix .o, ${GNL_SRC_FILES}}
 # **************************************** #
 # LIBRARIES & FRAMEWORKS
 
+
 MLX_PATH	= minilibx/
 MLX_LIB		= libmlx_Linux.a
 
-# Error with -lmlx
 LFLAGS		= -Lminilibx -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
-# LFLAGS		= -Lminilibx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
+
 
 # **************************************** #
 # RULES
@@ -62,7 +64,7 @@ ${NAME}: ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
 
 debug: ${OBJ_FILES} ${PRINTF_OBJ_FILES} ${GNL_OBJ_FILES}
 	make -C ${MLX_PATH}
-	${CC} -fsanitize=address -g ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
+	${CC} -g ${CFLAGS} $^ ${LFLAGS} -o ${NAME}
 
 %.o: %.c
 	${CC} ${CFLAGS} -Iminilibx -Iincludes -c $< -o $@

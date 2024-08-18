@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:47:20 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/12 16:45:33 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/18 14:12:04 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,34 +31,6 @@ void	open_map(t_game *game_init, char *file_path)
 	close(fd);
 }
 
-int	count_map_lines(char *file_path)
-{
-	int		fd;
-	int		count;
-	char	buffer[BUFFER_SIZE];
-	ssize_t	n_read;
-	int		i;
-
-	fd = open(file_path, O_RDONLY);
-	if (fd == -1)
-		return (0);
-	count = 0;
-	while (1)
-	{
-		n_read = read(fd, buffer, BUFFER_SIZE);
-		if (n_read < 0)
-			return (0);
-		else if (n_read == 0)
-			break ;
-		i = 0;
-		while (i < n_read)
-			if (buffer[i++] == '\n')
-				count++;
-	}
-	close(fd);
-	return (count + 1);
-}
-
 void	read_map(t_game *game_init, int fd)
 {
 	t_point	p;
@@ -71,9 +43,13 @@ void	read_map(t_game *game_init, int fd)
 	while (p.y < game_init->map_init.height)
 	{
 		if (game_init->map_init.width != (int)ft_linelen(line))
+		{
+			free(line);
 			free_and_exit(fd, game_init, "Incorrect line width.");
+		}
 		fill_grid(game_init, line, p, fd);
 		p.y++;
+		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
@@ -114,4 +90,33 @@ int	check_map_wall(t_game *game_init)
 		p.y++;
 	}
 	return (0);
+}
+
+int	count_map_objects(t_game *game_init)
+{
+	t_point	p;
+
+	p.x = 0;
+	while (p.x < game_init->map_init.width)
+	{
+		p.y = 0;
+		while (p.y < game_init->map_init.height)
+		{
+			if (check_map_character(game_init->map_init.grid[p.y][p.x]))
+				return (1);
+			if (game_init->map_init.grid[p.y][p.x] == 'P')
+			{
+				game_init->game_data.count_player++;
+				game_init->player.start_pos = p;
+				game_init->player.pos = p;
+			}
+			else if (game_init->map_init.grid[p.y][p.x] == 'E')
+				game_init->game_data.count_exit++;
+			else if (game_init->map_init.grid[p.y][p.x] == 'C')
+				game_init->game_data.count_collectibles++;
+			p.y++;
+		}
+		p.x++;
+	}
+	return (check_map_objects(game_init));
 }

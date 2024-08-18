@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:57:16 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/13 17:39:39 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/15 22:58:36 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,35 @@ void	initialize_game(t_game *game_init)
 {
 	game_init->mlx_ptr = mlx_init();
 	if (!game_init->mlx_ptr)
+	{
+		free_grid_and_tile(game_init);
 		exit_error("Failed to initialize window system (mlx_init()).");
+	}
 	game_init->win_ptr = mlx_new_window(game_init->mlx_ptr,
-		game_init->map_init.width * CELL_SIZE,
-		game_init->map_init.height * CELL_SIZE, "So Long");
+			game_init->map_init.width * CELL_SIZE,
+			game_init->map_init.height * CELL_SIZE, "So Long");
 	if (!game_init->win_ptr)
-		exit_error("Failed to initialize new window (mlx_new_window())");
+	{
+		free_grid_and_tile(game_init);
+		mlx_destroy_display(game_init->mlx_ptr);
+		free(game_init->mlx_ptr);
+		exit_error("Failed to initialize new window (mlx_new_window()).");
+	}
 	initialize_game_img(game_init);
 }
 
 void	initialize_game_img(t_game *game_init)
 {
 	load_img(game_init, &game_init->game_objs.floor,
-			"./textures/grass.xpm");
+		"./textures/grass.xpm");
 	load_img(game_init, &game_init->game_objs.wall,
-			"./textures/tree.xpm");
+		"./textures/tree.xpm");
 	load_img(game_init, &game_init->game_objs.player,
-			"./textures/player.xpm");
+		"./textures/player.xpm");
 	load_img(game_init, &game_init->game_objs.collectibles,
-			"./textures/key.xpm");
+		"./textures/key.xpm");
 	load_img(game_init, &game_init->game_objs.exit,
-			"./textures/chest.xpm");
+		"./textures/chest_1.xpm");
 }
 
 void	load_img(t_game *game_init, void **image, char *file_path)
@@ -44,9 +52,15 @@ void	load_img(t_game *game_init, void **image, char *file_path)
 	int	width;
 	int	height;
 
-	*image = mlx_xpm_file_to_image(game_init->mlx_ptr, file_path, &width, &height);
+	*image = mlx_xpm_file_to_image(game_init->mlx_ptr, file_path,
+			&width, &height);
 	if (!*image)
 	{
+		free_img(game_init);
+		free_grid_and_tile(game_init);
+		mlx_destroy_window(game_init->mlx_ptr, game_init->win_ptr);
+		mlx_destroy_display(game_init->mlx_ptr);
+		free(game_init->mlx_ptr);
 		exit_error("Failed to load image.");
 	}
 }

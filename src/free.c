@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 14:51:24 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/12 12:32:39 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/16 11:36:57 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,20 @@ void	free_grid_and_tile(t_game *game_init)
 {
 	free_grid(game_init);
 	free_tile(game_init);
+}
+
+void	free_img(t_game *game_init)
+{
+	if (game_init->game_objs.floor)
+		mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.floor);
+	if (game_init->game_objs.wall)
+		mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.wall);
+	if (game_init->game_objs.player)
+		mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.player);
+	if (game_init->game_objs.collectibles)
+		mlx_destroy_image(game_init->mlx_ptr,
+			game_init->game_objs.collectibles);
+	if (game_init->game_objs.exit)
+		mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.exit);
+	game_init->game_objs = (t_game_objs){0};
 }

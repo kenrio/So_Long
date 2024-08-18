@@ -6,7 +6,7 @@
 /*   By: keishii <keishii@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:59:59 by keishii           #+#    #+#             */
-/*   Updated: 2024/08/12 14:56:30 by keishii          ###   ########.fr       */
+/*   Updated: 2024/08/18 14:02:54 by keishii          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,46 @@ int	check_map_extension(char *s)
 	return (1);
 }
 
-void	exit_error(char *message)
+int	count_map_lines(char *file_path)
 {
-	ft_printf("\nError: ");
-	ft_printf("%s\n\n", message);
-	exit(1);
+	int		fd;
+	int		count;
+	char	buffer[BUFFER_SIZE];
+	ssize_t	n_read;
+	int		i;
+
+	fd = open(file_path, O_RDONLY);
+	if (fd == -1)
+		return (0);
+	count = 0;
+	while (1)
+	{
+		n_read = read(fd, buffer, BUFFER_SIZE);
+		if (n_read < 0)
+			return (0);
+		else if (n_read == 0)
+			break ;
+		i = 0;
+		while (i < n_read)
+			if (buffer[i++] == '\n')
+				count++;
+	}
+	close(fd);
+	return (count + 1);
 }
 
-void	free_and_exit(int fd, t_game *game_init, char *message)
+void	initialize_tiles(t_game *game_init)
 {
-	close(fd);
-	free_grid_and_tile(game_init);
-	exit_error(message);
+	t_point	p;
+	t_point	map_size;
+
+	p.y = -1;
+	map_size.x = game_init->map_init.width;
+	map_size.y = game_init->map_init.height;
+	while (++p.y < map_size.y)
+	{
+		p.x = 0;
+		while (p.x < map_size.x)
+			game_init->map_init.tile[p.y][p.x++].v = 0;
+	}
 }
